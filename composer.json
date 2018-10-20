@@ -1,0 +1,16 @@
+{
+  "name": "stepgt/thiscms",
+  "authors": [
+    {
+      "name": "stepGT",
+      "email": "stepGT@mail.ru"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Engine\\": "engine",
+      "Engine\\TC_DI\\": "engine/TC_DI"
+    }
+  }
+}

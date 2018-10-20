@@ -46,6 +46,6 @@ class TC_DI {
    * @return bool
    */
   public function tc_has($key) {
-    return isset($this->container[$key]);
+    return isset($this->container[$key]) ? $this->container[$key] : NULL;
   }
 }
