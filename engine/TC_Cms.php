@@ -17,6 +17,8 @@ class TC_Cms {
 
   private $tc_di;
 
+  public $tc_router;
+
   /**
    * TC_Cms constructor.
    *
@@ -24,12 +26,18 @@ class TC_Cms {
    */
   public function __construct($tc_di) {
     $this->tc_di = $tc_di;
+    $this->tc_router = $this->tc_di->tc_get('tc_router');
   }
 
   /**
    * @param $di
    */
   public function tc_run() {
+    $this->tc_router->tc_add('home', '/', 'TCHomeController:index');
+    $this->tc_router->tc_add('product', '/product{id}', 'TCProductController:index');
+    print '<pre>';
+    print_r($this->tc_di);
+    print '</pre>';
     echo 'ThisCMS';
   }
 }

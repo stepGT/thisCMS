@@ -7,4 +7,5 @@
  */
 return [
   Engine\TC_Service\TC_Database\TC_Provider::class,
+  Engine\TC_Service\TC_Router\TC_Provider::class,
 ];
