@@ -13,7 +13,13 @@ use Engine\TC_DI\TC_DI;
 
 try {
   // Dependency injection
-  $di  = new TC_DI();
+  $di = new TC_DI();
+  $services = require __DIR__ . '/TC_Config/TC_Service.php';
+  // Init services
+  foreach ($services as $service) {
+    $provider = new $service($di);
+    $provider->tc_init();
+  }
   $cms = new TC_Cms($di);
   $cms->tc_run();
 } catch (\ErrorException $e) {

@@ -8,6 +8,11 @@
 
 namespace Engine;
 
+/**
+ * Class TC_Cms
+ *
+ * @package Engine
+ */
 class TC_Cms {
 
   private $tc_di;
@@ -25,6 +30,6 @@ class TC_Cms {
    * @param $di
    */
   public function tc_run() {
-    //
+    echo 'ThisCMS';
   }
 }
