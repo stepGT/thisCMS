@@ -12,6 +12,8 @@ class TC_Router {
 
   private $tc_routes = [];
 
+  private $tc_dispatcher;
+
   private $tc_host;
 
   /**
@@ -36,5 +38,17 @@ class TC_Router {
       'controller' => $tc_controller,
       'method'     => $tc_method
     ];
+  }
+
+  public function tc_dispatch($tc_method, $tc_uri) {
+
+  }
+
+  public function tc_getDispatcher() {
+    //
+    if($this->tc_dispatcher == null) {
+      //
+    }
+    return $this->tc_dispatcher;
   }
 }

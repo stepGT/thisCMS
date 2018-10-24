@@ -33,11 +33,8 @@ class TC_Cms {
    * @param $di
    */
   public function tc_run() {
-    $this->tc_router->tc_add('home', '/', 'TCHomeController:index');
-    $this->tc_router->tc_add('product', '/product{id}', 'TCProductController:index');
-    print '<pre>';
-    print_r($this->tc_di);
-    print '</pre>';
+    //$this->tc_router->tc_add('home', '/', 'TCHomeController:index');
+    //$this->tc_router->tc_add('product', '/product{id}', 'TCProductController:index');
     echo 'ThisCMS';
   }
 }
