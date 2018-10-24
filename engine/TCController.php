@@ -9,14 +9,12 @@
 namespace Engine;
 
 
-abstract class TC_Controller {
+abstract class TCController {
 
   /**
-   * TC_Controller constructor.
+   * TCController constructor.
    *
-   * @param $di
+   * @param $tcDi
    */
-  public function __construct($di) {
-
-  }
+  public function __construct($tcDi) {}
 }

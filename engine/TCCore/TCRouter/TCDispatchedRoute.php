@@ -6,7 +6,7 @@
  * Time: 8:42 PM
  */
 
-namespace Engine\TC_Core\TC_Router;
+namespace Engine\TCCore\TCRouter;
 
 
 class TCDispatchedRoute {

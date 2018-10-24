@@ -8,20 +8,20 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Engine\TC_Cms;
-use Engine\TC_DI\TC_DI;
+use Engine\TCApp;
+use Engine\TCDI\TCDI;
 
 try {
   // Dependency injection
-  $di = new TC_DI();
-  $services = require __DIR__ . '/TC_Config/TC_Service.php';
+  $tcDi = new TCDI();
+  $services = require __DIR__ . '/TCConfig/TCService.php';
   // Init services
   foreach ($services as $service) {
-    $provider = new $service($di);
-    $provider->tc_init();
+    $provider = new $service($tcDi);
+    $provider->tcInit();
   }
-  $cms = new TC_Cms($di);
-  $cms->tc_run();
+  $app = new TCApp($tcDi);
+  $app->tcRun();
 } catch (\ErrorException $e) {
   echo $e->getMessage();
 }

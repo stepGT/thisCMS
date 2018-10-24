@@ -10,7 +10,7 @@
   "autoload": {
     "psr-4": {
       "Engine\\": "engine",
-      "Engine\\TC_DI\\": "engine/TC_DI"
+      "Engine\\TCDI\\": "engine/TCDI"
     }
   }
 }

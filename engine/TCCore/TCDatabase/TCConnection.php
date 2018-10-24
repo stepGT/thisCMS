@@ -6,30 +6,30 @@
  * Time: 1:02 AM
  */
 
-namespace Engine\TC_Core\TC_Database;
+namespace Engine\TCCore\TCDatabase;
 
 use PDO;
 
 /**
- * Class TC_Connection
+ * Class TCConnection
  *
- * @package Engine\TC_Core\TC_Database
+ * @package Engine\TCCore\TCDatabase
  */
-class TC_Connection {
+class TCConnection {
 
-  private $tc_link;
+  private $tcLink;
 
   /**
-   * TC_Connection constructor.
+   * TCConnection constructor.
    */
   public function __construct() {
-    $this->tc_connect();
+    $this->tcConnect();
   }
 
   /**
    * @return $this
    */
-  public function tc_connect() {
+  public function tcConnect() {
     $config = [
       'host'    => 'localhost',
       'uname'   => 'root',
@@ -38,27 +38,27 @@ class TC_Connection {
       'charset' => 'utf8',
     ];
     $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
-    $this->tc_link = new PDO($dsn, $config['uname'], $config['passwd']);
+    $this->tcLink = new PDO($dsn, $config['uname'], $config['passwd']);
     return $this;
   }
 
   /**
-   * @param $sql
+   * @param $tcSql
    *
    * @return mixed
    */
-  public function tc_execute($sql) {
-    $sth = $this->tc_link->prepare($sql);
+  public function tcExecute($tcSql) {
+    $sth = $this->tcLink->prepare($tcSql);
     return $sth->execute();
   }
 
   /**
-   * @param $sql
+   * @param $tcSql
    *
    * @return array
    */
-  public function tc_query($sql) {
-    $sth = $this->tc_link->prepare($sql);
+  public function tcQuery($tcSql) {
+    $sth = $this->tcLink->prepare($tcSql);
     $sth->execute();
     $result = $sth->fetcAll(PDO::FETCH_ASSOC);
     //

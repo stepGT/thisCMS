@@ -9,30 +9,30 @@
 namespace Engine;
 
 /**
- * Class TC_Cms
+ * Class TCApp
  *
  * @package Engine
  */
-class TC_Cms {
+class TCApp {
 
-  private $tc_di;
+  private $tcDi;
 
-  public $tc_router;
+  public $tcRouter;
 
   /**
    * TC_Cms constructor.
    *
    * @param $tc_di
    */
-  public function __construct($tc_di) {
-    $this->tc_di = $tc_di;
-    $this->tc_router = $this->tc_di->tc_get('tc_router');
+  public function __construct($tcDi) {
+    $this->tcDi = $tcDi;
+    $this->tcRouter = $this->tcDi->tcGet('tc_router');
   }
 
   /**
    * @param $di
    */
-  public function tc_run() {
+  public function tcRun() {
     //$this->tc_router->tc_add('home', '/', 'TCHomeController:index');
     //$this->tc_router->tc_add('product', '/product{id}', 'TCProductController:index');
     echo 'ThisCMS';

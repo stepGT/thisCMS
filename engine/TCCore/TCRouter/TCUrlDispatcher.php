@@ -6,7 +6,7 @@
  * Time: 8:09 PM
  */
 
-namespace Engine\TC_Core\TC_Router;
+namespace Engine\TCCore\TCRouter;
 
 
 class TCUrlDispatcher {
@@ -23,7 +23,7 @@ class TCUrlDispatcher {
    * @var array
    */
   private $tcRoutes = [
-    'GET' => [],
+    'GET'  => [],
     'POST' => [],
   ];
 
