@@ -9,12 +9,21 @@
 namespace Engine;
 
 
+use Engine\TCDI\TCDI;
+
 abstract class TCController {
+
+  protected $tcDi;
+
+  protected $tcDb;
+
 
   /**
    * TCController constructor.
    *
-   * @param $tcDi
+   * @param \Engine\TCDI\TCDI $tcDi
    */
-  public function __construct($tcDi) {}
+  public function __construct(TCDI $tcDi) {
+    $this->tcDi = $tcDi;
+  }
 }

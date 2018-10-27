@@ -35,11 +35,11 @@ class TCApp {
    * Run ThisCMS
    */
   public function tcRun() {
-    $this->tcRouter->tcAdd('home', '/', 'TCHomeController:index');
+    $this->tcRouter->tcAdd('home', '/', 'TCHomeController:tcIndex');
     $this->tcRouter->tcAdd('product', '/user/12', 'TCProductController:index');
     $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
-    print '<pre>';
-    print_r($tcRouterDispatch);
-    print '</pre>';
+    list($tcClass, $tcAction) = explode(':', $tcRouterDispatch->getTcController(), 2);
+    $tcController = '\\App\\TCController\\' . $tcClass;
+    call_user_func_array([new $tcController($this->tcDi), $tcAction],$tcRouterDispatch->getTcParameters());
   }
 }

@@ -86,11 +86,12 @@ class TCUrlDispatcher {
    */
   private function tcDoDispatcher($tcMethod, $tcUri) {
     //
-    foreach($this->tcRoutes($tcMethod) as $tcRoute => $tcController) {
-      /*$tcPattern = '#^' . $tcRoute . '$#s';
-      if(preg_match($tcPattern, $tcUri, $tcParameters)) {
+    foreach ($this->tcRoutes($tcMethod) as $tcRoute => $tcController) {
+      $tcPattern = '#^' . $tcRoute . '$#s';
+      //
+      if (preg_match($tcPattern, $tcUri, $tcParameters)) {
         return new TCDispatchedRoute($tcController, $tcParameters);
-      }*/
+      }
     }
   }
 }
