@@ -14,7 +14,7 @@ use Engine\TCCore\TCRouter\TCRouter;
 /**
  * Class TCProvider
  *
- * @package Engine\TCService\TCDatabase
+ * @package Engine\TCService\TCProvider
  */
 class TCProvider extends TCAbstractProvider {
 

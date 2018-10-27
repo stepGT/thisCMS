@@ -40,14 +40,27 @@ class TCRouter {
     ];
   }
 
+  /**
+   * @param $tcMethod
+   * @param $tcUri
+   *
+   * @return mixed
+   */
   public function tcDispatch($tcMethod, $tcUri) {
-
+    return $this->tcGetDispatcher()->tcDispatch($tcMethod, $tcUri);
   }
 
+  /**
+   * @return \Engine\TCCore\TCRouter\TCUrlDispatcher
+   */
   public function tcGetDispatcher() {
     //
     if ($this->tcDispatcher == NULL) {
+      $this->tcDispatcher = new TCUrlDispatcher();
       //
+      foreach ($this->tcRoutes as $tcRoute) {
+        $this->tcDispatcher->tcRegister($tcRoute['method'], $tcRoute['pattern'], $tcRoute['controller']);
+      }
     }
     return $this->tcDispatcher;
   }

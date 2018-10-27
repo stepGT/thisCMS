@@ -46,6 +46,15 @@ class TCUrlDispatcher {
   }
 
   /**
+   * @param $tcMethod
+   * @param $tcPattern
+   * @param $tcController
+   */
+  public function tcRegister($tcMethod, $tcPattern, $tcController) {
+    $this->tcRoutes[strtoupper($tcMethod)][$tcPattern] = $tcController;
+  }
+
+  /**
    * @param $tcKey
    * @param $tcPattern
    */
@@ -53,11 +62,35 @@ class TCUrlDispatcher {
     $this->tcPatterns[$tcKey] = $tcPattern;
   }
 
+  /**
+   * @param $tcMethod
+   * @param $tcUri
+   *
+   * @return \Engine\TCCore\TCRouter\TCDispatchedRoute
+   */
   public function tcDispatch($tcMethod, $tcUri) {
     $tcRoutes = $this->tcRoutes(strtoupper($tcMethod));
     //
     if (array_key_exists($tcUri, $tcRoutes)) {
       return new TCDispatchedRoute($tcRoutes[$tcUri]);
+    }
+    return $this->tcDoDispatcher($tcMethod, $tcUri);
+  }
+
+
+  /**
+   * @param $tcMethod
+   * @param $tcUri
+   *
+   * @return \Engine\TCCore\TCRouter\TCDispatchedRoute
+   */
+  private function tcDoDispatcher($tcMethod, $tcUri) {
+    //
+    foreach($this->tcRoutes($tcMethod) as $tcRoute => $tcController) {
+      /*$tcPattern = '#^' . $tcRoute . '$#s';
+      if(preg_match($tcPattern, $tcUri, $tcParameters)) {
+        return new TCDispatchedRoute($tcController, $tcParameters);
+      }*/
     }
   }
 }

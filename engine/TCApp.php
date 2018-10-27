@@ -8,6 +8,8 @@
 
 namespace Engine;
 
+use Engine\TCHelper\TCCommon;
+
 /**
  * Class TCApp
  *
@@ -20,21 +22,24 @@ class TCApp {
   public $tcRouter;
 
   /**
-   * TC_Cms constructor.
+   * TCApp constructor.
    *
-   * @param $tc_di
+   * @param $tcDi
    */
   public function __construct($tcDi) {
     $this->tcDi = $tcDi;
-    $this->tcRouter = $this->tcDi->tcGet('tc_router');
+    $this->tcRouter = $this->tcDi->tcGet('tcRouter');
   }
 
   /**
-   * @param $di
+   * Run ThisCMS
    */
   public function tcRun() {
-    //$this->tc_router->tc_add('home', '/', 'TCHomeController:index');
-    //$this->tc_router->tc_add('product', '/product{id}', 'TCProductController:index');
-    echo 'ThisCMS';
+    $this->tcRouter->tcAdd('home', '/', 'TCHomeController:index');
+    $this->tcRouter->tcAdd('product', '/user/12', 'TCProductController:index');
+    $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
+    print '<pre>';
+    print_r($tcRouterDispatch);
+    print '</pre>';
   }
 }
