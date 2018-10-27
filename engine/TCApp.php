@@ -8,6 +8,7 @@
 
 namespace Engine;
 
+use Engine\TCCore\TCRouter\TCDispatchedRoute;
 use Engine\TCHelper\TCCommon;
 
 /**
@@ -35,11 +36,25 @@ class TCApp {
    * Run ThisCMS
    */
   public function tcRun() {
-    $this->tcRouter->tcAdd('home', '/', 'TCHomeController:tcIndex');
-    $this->tcRouter->tcAdd('product', '/user/12', 'TCProductController:index');
-    $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
-    list($tcClass, $tcAction) = explode(':', $tcRouterDispatch->getTcController(), 2);
-    $tcController = '\\App\\TCController\\' . $tcClass;
-    call_user_func_array([new $tcController($this->tcDi), $tcAction],$tcRouterDispatch->getTcParameters());
+    try {
+      $this->tcRouter->tcAdd('home', '/', 'TCHomeController:tcIndex');
+      $this->tcRouter->tcAdd('product', '/user/12', 'TCProductController:index');
+      $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
+      // 404
+      if ($tcRouterDispatch == NULL) {
+        $tcRouterDispatch = new TCDispatchedRoute('TCErrorController:tcPage404');
+      }
+      list($tcClass, $tcAction) = explode(':', $tcRouterDispatch->getTcController(), 2);
+      $tcController = '\\App\\TCController\\' . $tcClass;
+      $tcParameters = $tcRouterDispatch->getTcParameters();
+      //
+      call_user_func_array([
+        new $tcController($this->tcDi),
+        $tcAction,
+      ], $tcParameters);
+    } catch (\Exception $e) {
+      $e->getMessage();
+      exit;
+    }
   }
 }

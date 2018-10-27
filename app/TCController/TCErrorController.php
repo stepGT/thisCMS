@@ -2,21 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: stepGT
- * Date: 10/27/2018
- * Time: 11:37 PM
+ * Date: 10/28/2018
+ * Time: 1:52 AM
  */
 
 namespace App\TCController;
 
-class TCHomeController extends TCAppController {
+class TCErrorController extends TCAppController {
 
   /**
    *
    */
-  public function tcIndex() {
+  public function tcPage404() {
     print '<pre>';
-    print_r('Index page');
+    print_r('404 page');
     print '</pre>';
   }
-
 }
