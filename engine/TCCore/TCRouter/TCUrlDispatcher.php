@@ -51,7 +51,47 @@ class TCUrlDispatcher {
    * @param $tcController
    */
   public function tcRegister($tcMethod, $tcPattern, $tcController) {
-    $this->tcRoutes[strtoupper($tcMethod)][$tcPattern] = $tcController;
+    $tcConvert = $this->tcConvertPattern($tcPattern);
+    $this->tcRoutes[strtoupper($tcMethod)][$tcConvert] = $tcController;
+  }
+
+  /**
+   * @param $tcPattern
+   *
+   * @return mixed
+   */
+  private function tcConvertPattern($tcPattern) {
+    //
+    if (strpos($tcPattern, '(') === FALSE) {
+      return $tcPattern;
+    }
+    return preg_replace_callback('#\((\w+):(\w+)\)#', [
+      $this,
+      'tcReplacePattern',
+    ], $tcPattern);
+  }
+
+  /**
+   * @param $tcMatches
+   *
+   * @return string
+   */
+  private function tcReplacePattern($tcMatches) {
+    return '(?<' . $tcMatches[1] . '>' . strtr($tcMatches[2], $this->tcPatterns) . ')';
+  }
+
+  /**
+   * @param $tcParameters
+   *
+   * @return mixed
+   */
+  private function tcProcessParam($tcParameters) {
+    foreach ($tcParameters as $tcKey => $tcValue) {
+      if (is_int($tcKey)) {
+        unset($tcParameters[$tcKey]);
+      }
+    }
+    return $tcParameters;
   }
 
   /**
@@ -90,7 +130,7 @@ class TCUrlDispatcher {
       $tcPattern = '#^' . $tcRoute . '$#s';
       //
       if (preg_match($tcPattern, $tcUri, $tcParameters)) {
-        return new TCDispatchedRoute($tcController, $tcParameters);
+        return new TCDispatchedRoute($tcController, $this->tcProcessParam($tcParameters));
       }
     }
   }

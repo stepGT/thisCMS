@@ -19,4 +19,13 @@ class TCHomeController extends TCAppController {
     print '</pre>';
   }
 
+  /**
+   *
+   */
+  public function tcNews($tcId) {
+    print '<pre>';
+    print_r($tcId);
+    print '</pre>';
+  }
+
 }

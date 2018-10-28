@@ -38,7 +38,9 @@ class TCApp {
   public function tcRun() {
     try {
       $this->tcRouter->tcAdd('home', '/', 'TCHomeController:tcIndex');
-      $this->tcRouter->tcAdd('product', '/user/12', 'TCProductController:index');
+      $this->tcRouter->tcAdd('news', '/news', 'TCHomeController:tcNews');
+      $this->tcRouter->tcAdd('news_single', '/news/(id:int)', 'TCHomeController:tcNews');
+
       $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
       // 404
       if ($tcRouterDispatch == NULL) {
