@@ -46,6 +46,6 @@ class TCDI {
    * @return bool
    */
   public function tcHas($tcKey) {
-    return isset($this->container[$tcKey]) ? $this->tcContainer[$tcKey] : NULL;
+    return isset($this->tcContainer[$tcKey]) ? $this->tcContainer[$tcKey] : NULL;
   }
 }

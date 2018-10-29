@@ -8,6 +8,9 @@
 
 namespace Engine;
 
+use Engine\TCCore\TCRouter\TCDispatchedRoute;
+use Engine\TCHelper\TCCommon;
+
 /**
  * Class TCApp
  *
@@ -20,21 +23,40 @@ class TCApp {
   public $tcRouter;
 
   /**
-   * TC_Cms constructor.
+   * TCApp constructor.
    *
-   * @param $tc_di
+   * @param $tcDi
    */
   public function __construct($tcDi) {
     $this->tcDi = $tcDi;
-    $this->tcRouter = $this->tcDi->tcGet('tc_router');
+    $this->tcRouter = $this->tcDi->tcGet('tcRouter');
   }
 
   /**
-   * @param $di
+   * Run ThisCMS
    */
   public function tcRun() {
-    //$this->tc_router->tc_add('home', '/', 'TCHomeController:index');
-    //$this->tc_router->tc_add('product', '/product{id}', 'TCProductController:index');
-    echo 'ThisCMS';
+    try {
+      $this->tcRouter->tcAdd('home', '/', 'TCHomeController:tcIndex');
+      $this->tcRouter->tcAdd('news', '/news', 'TCHomeController:tcNews');
+      $this->tcRouter->tcAdd('news_single', '/news/(id:int)', 'TCHomeController:tcNews');
+
+      $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
+      // 404
+      if ($tcRouterDispatch == NULL) {
+        $tcRouterDispatch = new TCDispatchedRoute('TCErrorController:tcPage404');
+      }
+      list($tcClass, $tcAction) = explode(':', $tcRouterDispatch->getTcController(), 2);
+      $tcController = '\\App\\TCController\\' . $tcClass;
+      $tcParameters = $tcRouterDispatch->getTcParameters();
+      //
+      call_user_func_array([
+        new $tcController($this->tcDi),
+        $tcAction,
+      ], $tcParameters);
+    } catch (\Exception $e) {
+      $e->getMessage();
+      exit;
+    }
   }
 }
