@@ -14,18 +14,7 @@ class TCHomeController extends TCAppController {
    *
    */
   public function tcIndex() {
-    print '<pre>';
-    print_r('Index page');
-    print '</pre>';
+    $tcData = ['name' => 'Andrey'];
+    $this->tcView->tcRender('index', $tcData);
   }
-
-  /**
-   *
-   */
-  public function tcNews($tcId) {
-    print '<pre>';
-    print_r($tcId);
-    print '</pre>';
-  }
-
 }
