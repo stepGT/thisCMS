@@ -6,11 +6,15 @@
  * Time: 7:20 PM
  */
 
-namespace admin\TCController;
+namespace Admin\TCController;
 
 
-class TCLoginController {
-  public function tcIndex() {
-    echo 'LOL';
+class TCLoginController extends TCAdminController {
+
+  /**
+   *
+   */
+  public function tcForm() {
+    $this->tcView->tcRender('login');
   }
 }

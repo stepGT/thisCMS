@@ -6,9 +6,15 @@
  * Time: 7:21 PM
  */
 
-namespace admin\TCController;
+namespace Admin\TCController;
 
 
-class TCDashboardController {
+class TCDashboardController extends TCAdminController {
 
+  /**
+   *
+   */
+  public function tcIndex() {
+    $this->tcView->tcRender('dashboard');
+  }
 }
