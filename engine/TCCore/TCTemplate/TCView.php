@@ -11,10 +11,13 @@ namespace Engine\TCCore\TCTemplate;
 
 class TCView {
 
+  protected $tcTheme;
+
   /**
    * TCView constructor.
    */
   public function __construct() {
+    $this->tcTheme = new TCTheme();
   }
 
   /**
@@ -30,6 +33,7 @@ class TCView {
         sprintf('Template "%s" not found in "%s"', $tcTemplate, $tcTemplatePath)
       );
     }
+    $this->tcTheme->setTcData($tcVars);
     extract($tcVars);
     // Buffer
     ob_start();
