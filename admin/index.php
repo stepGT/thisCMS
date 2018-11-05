@@ -6,5 +6,5 @@
  * Time: 10:46 PM
  */
 define('TC_DIR', __DIR__);
-define('ENV', 'App');
-require_once 'engine/bootstrap.php';
+define('ENV', 'Admin');
+require_once '../engine/bootstrap.php';

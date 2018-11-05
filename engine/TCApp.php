@@ -37,14 +37,14 @@ class TCApp {
    */
   public function tcRun() {
     try {
-      require_once  TC_DIR . '/app/TCRoute.php';
+      require_once __DIR__ . '/../' . mb_strtolower(ENV) . '/TCRoute.php';
       $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
       // 404
       if ($tcRouterDispatch == NULL) {
         $tcRouterDispatch = new TCDispatchedRoute('TCErrorController:tcPage404');
       }
       list($tcClass, $tcAction) = explode(':', $tcRouterDispatch->getTcController(), 2);
-      $tcController = '\\App\\TCController\\' . $tcClass;
+      $tcController = '\\' . ENV . '\\TCController\\' . $tcClass;
       $tcParameters = $tcRouterDispatch->getTcParameters();
       //
       call_user_func_array([
