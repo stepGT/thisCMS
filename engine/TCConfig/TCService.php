@@ -8,4 +8,5 @@
 return [
   Engine\TCService\TCDatabase\TCProvider::class,
   Engine\TCService\TCRouter\TCProvider::class,
+  Engine\TCService\TCView\TCProvider::class,
 ];
