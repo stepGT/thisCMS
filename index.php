@@ -5,4 +5,5 @@
  * Date: 10/14/2018
  * Time: 10:46 PM
  */
+define('TC_DIR', __DIR__);
 require_once 'engine/bootstrap.php';
