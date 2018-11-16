@@ -11,6 +11,7 @@
     "psr-4": {
       "Engine\\": "engine",
       "Engine\\TCDI\\": "engine/TCDI",
+      "Admin\\": "admin",
       "App\\": "app"
     }
   }

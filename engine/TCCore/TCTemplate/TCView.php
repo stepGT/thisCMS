@@ -27,7 +27,8 @@ class TCView {
    * @throws \Exception
    */
   public function tcRender($tcTemplate, $tcVars = []) {
-    $tcTemplatePath = TC_DIR . '/content/themes/default/' . $tcTemplate . '.php';
+    $tcTemplatePath = $this->tcGetTemplatePath($tcTemplate, ENV);
+    //
     if (!is_file($tcTemplatePath)) {
       throw new \InvalidArgumentException(
         sprintf('Template "%s" not found in "%s"', $tcTemplate, $tcTemplatePath)
@@ -49,4 +50,46 @@ class TCView {
     // Output
     echo ob_get_clean();
   }
+
+  /**
+   * @param $tcTemplate
+   * @param null $tcEnv
+   *
+   * @return string
+   */
+  private function tcGetTemplatePath($tcTemplate, $tcEnv = NULL) {
+    //
+    switch ($tcEnv) {
+      case 'Admin':
+        return TC_DIR . '/TCView/' . $tcTemplate . '.php';
+        break;
+      case 'App':
+        return TC_DIR . '/content/themes/default/' . $tcTemplate . '.php';
+        break;
+      default:
+        return TC_DIR . '/TCView/' . $tcTemplate . '.php';
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
