@@ -19,6 +19,7 @@ abstract class TCController {
 
   protected $tcView;
 
+  protected $tcConfig;
 
   /**
    * TCController constructor.
@@ -26,7 +27,8 @@ abstract class TCController {
    * @param \Engine\TCDI\TCDI $tcDi
    */
   public function __construct(TCDI $tcDi) {
-    $this->tcDi = $tcDi;
-    $this->tcView = $this->tcDi->tcGet('tcView');
+    $this->tcDi     = $tcDi;
+    $this->tcView   = $this->tcDi->tcGet('tcView');
+    $this->tcConfig = $this->tcDi->tcGet('tcConfig');
   }
 }

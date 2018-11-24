@@ -59,16 +59,10 @@ class TCView {
    */
   private function tcGetTemplatePath($tcTemplate, $tcEnv = NULL) {
     //
-    switch ($tcEnv) {
-      case 'Admin':
-        return TC_DIR . '/TCView/' . $tcTemplate . '.php';
-        break;
-      case 'App':
-        return TC_DIR . '/content/themes/default/' . $tcTemplate . '.php';
-        break;
-      default:
-        return TC_DIR . '/TCView/' . $tcTemplate . '.php';
+    if ($tcEnv == 'App') {
+      return TC_DIR . '/content/themes/default/' . $tcTemplate . '.php';
     }
+    return TC_DIR . '/TCView/' . $tcTemplate . '.php';
   }
 
 
