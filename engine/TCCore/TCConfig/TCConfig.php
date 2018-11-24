@@ -34,7 +34,7 @@ class TCConfig {
     if (file_exists($path)) {
       $items = require_once $path;
       //
-      if (is_array($items)) {
+      if (!empty($items)) {
         return $items;
       }
       else {
