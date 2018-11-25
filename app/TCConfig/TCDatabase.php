@@ -7,5 +7,8 @@
  */
 return [
   'host'     => 'localhost',
+  'dbname'  => 'thiscms',
   'username' => 'root',
+  'password' => '',
+  'charset'  => 'utf8',
 ];
