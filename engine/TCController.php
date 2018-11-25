@@ -21,6 +21,8 @@ abstract class TCController {
 
   protected $tcConfig;
 
+  protected $tcRequest;
+
   /**
    * TCController constructor.
    *
@@ -30,5 +32,6 @@ abstract class TCController {
     $this->tcDi     = $tcDi;
     $this->tcView   = $this->tcDi->tcGet('tcView');
     $this->tcConfig = $this->tcDi->tcGet('tcConfig');
+    $this->tcRequest = $this->tcDi->tcGet('tcRequest');
   }
 }
