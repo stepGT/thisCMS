@@ -8,7 +8,6 @@
 
 namespace Engine\TCCore\TCAuth;
 
-use Engine\TCCore\TCAuthInterface\TCAuthInterface;
 use Engine\TCHelper\TCCookie;
 
 class TCAuth implements TCAuthInterface {

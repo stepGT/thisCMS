@@ -24,7 +24,7 @@ class TCAdminController extends TCController {
     parent::__construct($tcDi);
     $this->tcAuth = new TCAuth();
     //
-    if (!$this->tcAuth->authorized() AND $this->tcRequest['REQUEST_URI'] !== '/admin/login/') {
+    if (!$this->tcAuth->authorized() AND $this->tcRequest->tcServer['REQUEST_URI'] !== '/admin/login/') {
       // redirect
       header('Location: /admin/login/', TRUE, 301);
       exit;
