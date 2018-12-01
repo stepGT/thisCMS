@@ -34,22 +34,20 @@ class TCAuth implements TCAuthInterface {
    * @param $user
    */
   public function authorize($user) {
-    TCCookie::set('auth.authorized', TRUE);
-    TCCookie::set('auth.user', $user);
-
+    TCCookie::set('auth_authorized', TRUE);
+    TCCookie::set('auth_user', $user);
     $this->authorized = TRUE;
-    $this->user = $user;
+    $this->user       = $user;
   }
 
   /**
    *
    */
   public function unAuthorize() {
-    TCCookie::delete('auth.authorized');
-    TCCookie::delete('auth.user');
-
+    TCCookie::delete('auth_authorized');
+    TCCookie::delete('auth_user');
     $this->authorized = FALSE;
-    $this->user = NULL;
+    $this->user       = NULL;
   }
 
   /**
