@@ -14,7 +14,7 @@ class TCAuth implements TCAuthInterface {
 
   protected $authorized = FALSE;
 
-  protected $user;
+  protected $hash_user;
 
   /**
    * @return bool
@@ -26,8 +26,8 @@ class TCAuth implements TCAuthInterface {
   /**
    * @return mixed
    */
-  public function user() {
-    return $this->user;
+  public function hashUser() {
+    return TCCookie::get('auth_user');
   }
 
   /**
@@ -36,8 +36,6 @@ class TCAuth implements TCAuthInterface {
   public function authorize($user) {
     TCCookie::set('auth_authorized', TRUE);
     TCCookie::set('auth_user', $user);
-    $this->authorized = TRUE;
-    $this->user       = $user;
   }
 
   /**
@@ -46,8 +44,6 @@ class TCAuth implements TCAuthInterface {
   public function unAuthorize() {
     TCCookie::delete('auth_authorized');
     TCCookie::delete('auth_user');
-    $this->authorized = FALSE;
-    $this->user       = NULL;
   }
 
   /**

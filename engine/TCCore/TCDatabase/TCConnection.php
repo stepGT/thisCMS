@@ -55,7 +55,7 @@ class TCConnection {
   public function tcQuery($tcSql) {
     $sth = $this->tcLink->prepare($tcSql);
     $sth->execute();
-    $result = $sth->fetcAll(PDO::FETCH_ASSOC);
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     //
     if ($result === FALSE) {
       return [];

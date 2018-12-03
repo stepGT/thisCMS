@@ -23,17 +23,26 @@ class TCAdminController extends TCController {
   public function __construct($tcDi) {
     parent::__construct($tcDi);
     $this->tcAuth = new TCAuth();
-    $this->tcCheckAuthorization();
+    //
+    if ($this->tcAuth->hashUser() == NULL) {
+      header('Location: /admin/login/');
+      exit;
+    }
+    else {
+      $this->tcCheckAuthorization();
+    }
   }
 
   /**
    * Check Auth
    */
   public function tcCheckAuthorization() {
-    if (!$this->tcAuth->authorized()) {
-      // redirect
-      header('Location: /admin/login/', TRUE, 301);
-      exit;
-    }
+
+  }
+
+  public function TCLogout() {
+    $this->tcAuth->unAuthorize();
+    header('Location: /admin/login/');
+    exit;
   }
 }
