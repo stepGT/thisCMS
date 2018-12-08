@@ -20,10 +20,10 @@
 </head>
 <body>
 <div class="container">
-  <form class="form-signin" role="form">
+  <form action="/admin/auth/" method="POST" class="form-signin" role="form">
     <h2 class="form-signin-heading">Login to CMS</h2>
-    <input type="email" class="form-control" placeholder="Email" required autofocus>
-    <input type="password" class="form-control" placeholder="Password" required>
+    <input name="email" type="email" class="form-control" placeholder="Email" required autofocus>
+    <input name="password" type="password" class="form-control" placeholder="Password" required>
     <label class="checkbox">
       <input type="checkbox" value="remember-me"> Remember me
     </label>
