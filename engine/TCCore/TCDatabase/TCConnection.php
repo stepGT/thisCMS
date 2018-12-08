@@ -39,22 +39,24 @@ class TCConnection {
 
   /**
    * @param $tcSql
+   * @param array $values
    *
    * @return mixed
    */
-  public function tcExecute($tcSql) {
+  public function tcExecute($tcSql, $values = []) {
     $sth = $this->tcLink->prepare($tcSql);
-    return $sth->execute();
+    return $sth->execute($values);
   }
 
   /**
    * @param $tcSql
+   * @param array $values
    *
    * @return array
    */
-  public function tcQuery($tcSql) {
+  public function tcQuery($tcSql, $values = []) {
     $sth = $this->tcLink->prepare($tcSql);
-    $sth->execute();
+    $sth->execute($values);
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     //
     if ($result === FALSE) {

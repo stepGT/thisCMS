@@ -22,7 +22,7 @@ class TCQueryBuilder {
    */
   public function select($fields = '*') {
     $this->reset();
-    $this->sql['select'] = "SELECT {$fields} ";
+    $this->sql['select'] = "SELECT `{$fields}` ";
     return $this;
   }
 
@@ -32,7 +32,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function from($table) {
-    $this->sql['from'] = "FROM {$table}";
+    $this->sql['from'] = "FROM `{$table}`";
     return $this;
   }
 
@@ -44,7 +44,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function where($column, $value, $operator = '=') {
-    $this->sql['where'][] = "{$column} {$operator} ?";
+    $this->sql['where'][] = "`{$column}` {$operator} ?";
     $this->values[] = $value;
     return $this;
   }
@@ -56,7 +56,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function orderBy($field, $order) {
-    $this->sql['order_by'] = "ORDER BY {$field} {$order}";
+    $this->sql['order_by'] = "ORDER BY `{$field}` {$order}";
     return $this;
   }
 
@@ -66,7 +66,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function limit($number) {
-    $this->sql['limit'] = "LIMIT {$number}";
+    $this->sql['limit'] = " LIMIT {$number}";
     return $this;
   }
 
@@ -77,7 +77,7 @@ class TCQueryBuilder {
    */
   public function update($table) {
     $this->reset();
-    $this->sql['update'] = "UPDATE {$table} ";
+    $this->sql['update'] = "UPDATE `{$table}` ";
     return $this;
   }
 
@@ -86,7 +86,7 @@ class TCQueryBuilder {
     //
     if (!empty($data)) {
       foreach ($data as $key => $value) {
-        $this->sql['set'] .= "{$key} = ?, ";
+        $this->sql['set'] .= "`{$key}` = ?, ";
         $this->values[] = $value;
       }
     }
