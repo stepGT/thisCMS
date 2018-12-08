@@ -9,6 +9,7 @@
 namespace Engine\TCCore\TCDatabase;
 
 use PDO;
+use Engine\TCCore\TCConfig\TCConfig;
 
 /**
  * Class TCConnection
@@ -30,37 +31,33 @@ class TCConnection {
    * @return $this
    */
   public function tcConnect() {
-    $config = [
-      'host'    => 'localhost',
-      'uname'   => 'root',
-      'passwd'  => '',
-      'dbname'  => 'thiscms',
-      'charset' => 'utf8',
-    ];
+    $config = TCConfig::file('TCDatabase');
     $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
-    $this->tcLink = new PDO($dsn, $config['uname'], $config['passwd']);
+    $this->tcLink = new PDO($dsn, $config['username'], $config['password']);
     return $this;
   }
 
   /**
    * @param $tcSql
+   * @param array $values
    *
    * @return mixed
    */
-  public function tcExecute($tcSql) {
+  public function tcExecute($tcSql, $values = []) {
     $sth = $this->tcLink->prepare($tcSql);
-    return $sth->execute();
+    return $sth->execute($values);
   }
 
   /**
    * @param $tcSql
+   * @param array $values
    *
    * @return array
    */
-  public function tcQuery($tcSql) {
+  public function tcQuery($tcSql, $values = []) {
     $sth = $this->tcLink->prepare($tcSql);
-    $sth->execute();
-    $result = $sth->fetcAll(PDO::FETCH_ASSOC);
+    $sth->execute($values);
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     //
     if ($result === FALSE) {
       return [];

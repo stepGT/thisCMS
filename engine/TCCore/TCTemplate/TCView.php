@@ -64,26 +64,4 @@ class TCView {
     }
     return TC_DIR . '/TCView/' . $tcTemplate . '.php';
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
