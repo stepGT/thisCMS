@@ -32,7 +32,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function from($table) {
-    $this->sql['from'] = "FROM `{$table}`";
+    $this->sql['from'] = "FROM `{$table}` ";
     return $this;
   }
 
@@ -56,7 +56,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function orderBy($field, $order) {
-    $this->sql['order_by'] = "ORDER BY `{$field}` {$order}";
+    $this->sql['order_by'] = " ORDER BY `{$field}` {$order}";
     return $this;
   }
 

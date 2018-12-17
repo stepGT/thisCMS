@@ -8,13 +8,13 @@
 
 namespace Admin\TCController;
 
-
 class TCDashboardController extends TCAdminController {
 
   /**
    *
    */
   public function tcIndex() {
+    $userModel = $this->tcLoad->tcModel('TCUser');
     $this->tcView->tcRender('dashboard');
   }
 }
