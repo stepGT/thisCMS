@@ -8,8 +8,11 @@
 
 namespace Admin\TCModel\TCUser;
 
+use Engine\TCCore\TCDatabase\TCActiveRecord;
 
 class TCUser {
+
+  use TCActiveRecord;
 
   /**
    * @var string

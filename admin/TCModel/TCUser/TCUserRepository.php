@@ -22,4 +22,13 @@ class TCUserRepository extends TCModel {
       ->sql();
     return $this->tcDB->tcQuery($sql);
   }
+
+  /**
+   *
+   */
+  public function test() {
+    $user = new TCUser(1);
+    $user->setEmail('admin@admin.org');
+    $user->save();
+  }
 }
