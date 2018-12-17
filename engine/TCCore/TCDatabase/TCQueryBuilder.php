@@ -32,7 +32,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function from($table) {
-    $this->sql['from'] = "FROM `{$table}`";
+    $this->sql['from'] = "FROM `{$table}` ";
     return $this;
   }
 
@@ -56,7 +56,7 @@ class TCQueryBuilder {
    * @return $this
    */
   public function orderBy($field, $order) {
-    $this->sql['order_by'] = "ORDER BY `{$field}` {$order}";
+    $this->sql['order_by'] = " ORDER BY `{$field}` {$order}";
     return $this;
   }
 
@@ -81,12 +81,26 @@ class TCQueryBuilder {
     return $this;
   }
 
+  /**
+   * @param $table
+   *
+   * @return $this
+   */
+  public function insert($table) {
+    $this->reset();
+    $this->sql['insert'] = "INSERT INTO `{$table}` ";
+    return $this;
+  }
+
   public function set($data = []) {
     $this->sql['set'] .= 'SET ';
     //
     if (!empty($data)) {
       foreach ($data as $key => $value) {
-        $this->sql['set'] .= "`{$key}` = ?, ";
+        $this->sql['set'] .= "`{$key}` = ?";
+        if (next($data)) {
+          $this->sql['set'] .= ", ";
+        }
         $this->values[] = $value;
       }
     }
