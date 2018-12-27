@@ -9,3 +9,5 @@ $this->tcRouter->tcAdd('login', '/admin/login/', 'TCLoginController:tcForm');
 $this->tcRouter->tcAdd('auth-admin', '/admin/auth/', 'TCLoginController:tcAuthAdmin', 'POST');
 $this->tcRouter->tcAdd('dashboard', '/admin/', 'TCDashboardController:tcIndex');
 $this->tcRouter->tcAdd('logout', '/admin/logout/', 'TCAdminController:TCLogout');
+$this->tcRouter->tcAdd('pages', '/admin/pages/', 'TCPageController:listing');
+$this->tcRouter->tcAdd('page-create', '/admin/pages/create/', 'TCPageController:create');

@@ -81,6 +81,10 @@ class TCTheme {
   private function tcLoadTemplateFile($tcFileName, $tcData = []) {
     $tcTemplateFile = TC_DIR . '/content/themes/default/' . $tcFileName . '.php';
     //
+    if (ENV == 'Admin') {
+      $tcTemplateFile = TC_DIR . '/TCView/' . $tcFileName . '.php';
+    }
+    //
     if (is_file($tcTemplateFile)) {
       extract($tcData);
       require_once $tcTemplateFile;

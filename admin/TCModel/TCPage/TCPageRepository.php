@@ -6,29 +6,20 @@
  * Time: 6:59 PM
  */
 
-namespace Admin\TCModel\TCUser;
+namespace Admin\TCModel\TCPage;
 
 use Engine\TCModel;
 
-class TCUserRepository extends TCModel {
+class TCPageRepository extends TCModel {
 
   /**
    * @return mixed
    */
-  public function tcGetUsers() {
+  public function tcGetPages() {
     $sql = $this->tcQueryBuilder->select()
-      ->from('tc_user')
+      ->from('tc_page')
       ->orderBy('id', 'DESC')
       ->sql();
     return $this->tcDB->tcQuery($sql);
-  }
-
-  /**
-   *
-   */
-  public function test() {
-    $user = new TCPage(1);
-    $user->setEmail('admin@admin.org');
-    $user->save();
   }
 }
