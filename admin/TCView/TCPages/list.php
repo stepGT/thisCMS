@@ -6,18 +6,18 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+                <?php foreach($pages as $page) : ?>
+                    <tr>
+                        <th scope="row"><?=$page['id'];?></th>
+                        <td><?=$page['title'];?></td>
+                        <td><?=$page['date'];?></td>
+                    </tr>
+                <?php endforeach;?>
                 </tbody>
             </table>
         </div>

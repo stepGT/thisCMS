@@ -15,6 +15,7 @@
     <!-- simplelineicons for this template -->
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/admin/TCAssets/js/plugins/redactor/redactor.css">
 </head>
 <body>
 <header>

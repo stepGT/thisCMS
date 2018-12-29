@@ -15,16 +15,18 @@
                                    id="formTitle" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="formContent">Title</label>
-                            <textarea class="form-control" name="formContent"
-                                      id="formContent" cols="30"
+                            <label for="redactor">Content</label>
+                            <textarea class="form-control" name="content"
+                                      id="redactor" cols="30"
                                       rows="10"></textarea>
                         </div>
                     </form>
                 </div>
                 <div class="col-3">
                     <p>Publish this page</p>
-                    <button type="submit" class="btn btn-primary">Publish
+                    <button type="submit" class="btn btn-primary"
+                            onclick="page.add()">
+                        Publish
                     </button>
                 </div>
             </div>

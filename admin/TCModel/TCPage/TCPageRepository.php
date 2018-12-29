@@ -22,4 +22,15 @@ class TCPageRepository extends TCModel {
       ->sql();
     return $this->tcDB->tcQuery($sql);
   }
+
+  /**
+   * @param $params
+   */
+  public function createPage($params) {
+    $page = new TCPage();
+    $page->setTitle($params['title']);
+    $page->setContent($params['content']);
+    $pageId = $page->save();
+    return $pageId;
+  }
 }
