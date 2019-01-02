@@ -14,7 +14,7 @@
                 <?php foreach($pages as $page) : ?>
                     <tr>
                         <th scope="row"><?=$page['id'];?></th>
-                        <td><?=$page['title'];?></td>
+                        <td><a href="/admin/pages/edit/<?=$page['id'];?>"><?=$page['title'];?></a></td>
                         <td><?=$page['date'];?></td>
                     </tr>
                 <?php endforeach;?>
