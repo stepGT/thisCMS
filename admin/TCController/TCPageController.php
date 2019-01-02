@@ -29,6 +29,27 @@ class TCPageController extends TCAdminController {
   }
 
   /**
+   * @param $id
+   */
+  public function edit($id) {
+    $pageModel = $this->tcLoad->tcModel('TCPage');
+    $this->data['page'] = $pageModel->repository->getPageData($id);
+    $this->tcView->tcRender('TCPages/edit', $this->data);
+  }
+
+  /**
+   *
+   */
+  public function update() {
+    $params    = $this->tcRequest->tcPost;
+    $pageModel = $this->tcLoad->tcModel('TCPage');
+    //
+    if (!empty($params['title'])) {
+      echo $pageModel->repository->updatePage($params);
+    }
+  }
+
+  /**
    *
    */
   public function add() {

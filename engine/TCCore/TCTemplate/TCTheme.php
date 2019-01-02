@@ -86,7 +86,7 @@ class TCTheme {
     }
     //
     if (is_file($tcTemplateFile)) {
-      extract($tcData);
+      extract(array_merge($tcData, $this->tcData));
       require_once $tcTemplateFile;
     }
     else {

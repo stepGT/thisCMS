@@ -24,6 +24,16 @@ class TCPageRepository extends TCModel {
   }
 
   /**
+   * @param $id
+   *
+   * @return mixed
+   */
+  public function getPageData($id) {
+    $page = new TCPage($id);
+    return $page->findOne();
+  }
+
+  /**
    * @param $params
    */
   public function createPage($params) {
@@ -32,5 +42,20 @@ class TCPageRepository extends TCModel {
     $page->setContent($params['content']);
     $pageId = $page->save();
     return $pageId;
+  }
+
+  /**
+   * @param $params
+   *
+   * @return mixed
+   */
+  public function updatePage($params) {
+    //
+    if (isset($params['page_id'])) {
+      $page = new TCPage($params['page_id']);
+      $page->setTitle($params['title']);
+      $page->setContent($params['content']);
+      $page->save();
+    }
   }
 }
