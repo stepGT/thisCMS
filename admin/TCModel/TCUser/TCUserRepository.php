@@ -27,7 +27,7 @@ class TCUserRepository extends TCModel {
    *
    */
   public function test() {
-    $user = new TCUser(1);
+    $user = new TCPage(1);
     $user->setEmail('admin@admin.org');
     $user->save();
   }

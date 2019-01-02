@@ -15,6 +15,8 @@ class TCAdminController extends TCController {
 
   protected $tcAuth;
 
+  public $data = [];
+
   /**
    * TCAdminController constructor.
    *

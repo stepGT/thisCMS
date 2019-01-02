@@ -64,4 +64,11 @@ class TCConnection {
     }
     return $result;
   }
+
+  /**
+   * @return mixed
+   */
+  public function lastInsertId() {
+    return $this->tcLink->lastInsertId();
+  }
 }
