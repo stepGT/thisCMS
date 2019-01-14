@@ -15,8 +15,8 @@ class TCPageController extends TCAdminController {
    *
    */
   public function listing() {
-    $pageModel = $this->tcLoad->tcModel('TCPage');
-    $data['pages'] = $pageModel->repository->tcGetPages();
+    $this->tcLoad->tcModel('TCPage');
+    $data['pages'] = $this->tcModel->TCPage->tcGetPages();
     $this->tcView->tcRender('TCPages/list', $data);
   }
 
@@ -24,7 +24,6 @@ class TCPageController extends TCAdminController {
    *
    */
   public function create() {
-    $pageModel = $this->tcLoad->tcModel('TCPage');
     $this->tcView->tcRender('TCPages/create');
   }
 
@@ -32,8 +31,8 @@ class TCPageController extends TCAdminController {
    * @param $id
    */
   public function edit($id) {
-    $pageModel = $this->tcLoad->tcModel('TCPage');
-    $this->data['page'] = $pageModel->repository->getPageData($id);
+    $this->tcLoad->tcModel('TCPage');
+    $this->data['page'] = $this->tcModel->TCPage->getPageData($id);
     $this->tcView->tcRender('TCPages/edit', $this->data);
   }
 
@@ -41,11 +40,11 @@ class TCPageController extends TCAdminController {
    *
    */
   public function update() {
-    $params    = $this->tcRequest->tcPost;
-    $pageModel = $this->tcLoad->tcModel('TCPage');
+    $this->tcLoad->tcModel('TCPage');
+    $params = $this->tcRequest->tcPost;
     //
     if (!empty($params['title'])) {
-      echo $pageModel->repository->updatePage($params);
+      echo $this->tcModel->TCPage->updatePage($params);
     }
   }
 
@@ -53,11 +52,12 @@ class TCPageController extends TCAdminController {
    *
    */
   public function add() {
-    $params    = $this->tcRequest->tcPost;
-    $pageModel = $this->tcLoad->tcModel('TCPage');
+    $this->tcLoad->tcModel('TCPage');
+    $params = $this->tcRequest->tcPost;
+
     //
     if (!empty($params['title'])) {
-      echo $pageModel->repository->createPage($params);
+      echo $this->tcModel->TCPage->createPage($params);
     }
   }
 }
