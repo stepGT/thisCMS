@@ -23,3 +23,5 @@ $this->tcRouter->tcAdd('post-edit', '/admin/posts/edit/(id:int)', 'TCPostControl
 // Posts routes POST
 $this->tcRouter->tcAdd('post-add', '/admin/posts/add/', 'TCPostController:add', 'POST');
 $this->tcRouter->tcAdd('post-update', '/admin/posts/update/', 'TCPostController:update', 'POST');
+// Settings Routes (GET)
+$this->tcRouter->tcAdd('settings-general', '/admin/settings/general/', 'TCSettingController:general');
