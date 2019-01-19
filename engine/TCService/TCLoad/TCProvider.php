@@ -21,5 +21,6 @@ class TCProvider extends TCAbstractProvider {
   public function tcInit() {
     $tcLoad = new TCLoad($this->tcDi);
     $this->tcDi->tcSet($this->tcServiceName, $tcLoad);
+    return $this;
   }
 }
