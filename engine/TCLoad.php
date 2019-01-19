@@ -10,6 +10,8 @@ class TCLoad {
 
   const TC_MASK_MODEL_REPOSITORY = '\%s\TCModel\%s\%sRepository';
 
+  const TC_FILE_MASK_LANGUAGE = 'TCLanguage/%s/%s.ini';
+
   public $tcDi;
 
   /**
@@ -19,6 +21,7 @@ class TCLoad {
    */
   public function __construct(TCDI $tcDi) {
     $this->tcDi = $tcDi;
+    return $this;
   }
 
   /**
@@ -43,5 +46,36 @@ class TCLoad {
       $this->tcDi->tcSet('tcModel', $modelRegistry);
     }
     return $isClassModel;
+  }
+
+  /**
+   * @param $path
+   *
+   * @return array|bool
+   */
+  public function TCLanguage($path) {
+    $file = sprintf(
+      self::TC_FILE_MASK_LANGUAGE,
+      'english', $path
+    );
+    $content = parse_ini_file($file);
+    // Set to TCDI
+    $languageName = $this->toCamelCase($path);
+    $language = $this->tcDi->tcGet('tcLanguage') ?: new \stdClass();
+    $language->{$languageName} = $content;
+    $this->tcDi->tcSet('tcLanguage', $language);
+    return $content;
+  }
+
+  /**
+   * @param $str
+   *
+   * @return string
+   */
+  private function toCamelCase($str) {
+    $replace = preg_replace('/[^a-zA-Z0-9]/', ' ', $str);
+    $convert = mb_convert_case($replace, MB_CASE_TITLE);
+    $result = lcfirst(str_replace(' ', '', $convert));
+    return $result;
   }
 }

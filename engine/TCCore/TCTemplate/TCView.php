@@ -9,14 +9,19 @@
 namespace Engine\TCCore\TCTemplate;
 
 
+use Engine\TCDI\TCDI;
+
 class TCView {
+
+  public $tcDi;
 
   protected $tcTheme;
 
   /**
    * TCView constructor.
    */
-  public function __construct() {
+  public function __construct(TCDI $tcDi) {
+    $this->tcDi = $tcDi;
     $this->tcTheme = new TCTheme();
   }
 
@@ -34,6 +39,7 @@ class TCView {
         sprintf('Template "%s" not found in "%s"', $tcTemplate, $tcTemplatePath)
       );
     }
+    $tcVars['lang'] = $this->tcDi->tcGet('tcLanguage');
     $this->tcTheme->setTcData($tcVars);
     extract($tcVars);
     // Buffer

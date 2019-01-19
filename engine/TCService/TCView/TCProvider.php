@@ -25,7 +25,7 @@ class TCProvider extends TCAbstractProvider {
    * @return mixed
    */
   public function tcInit() {
-    $tcView = new TCView();
+    $tcView = new TCView($this->tcDi);
     $this->tcDi->tcSet($this->tcServiceName, $tcView);
   }
 }
