@@ -7,5 +7,6 @@
 <script src="/admin/TCAssets/js/plugins/redactor/redactor.min.js"></script>
 <script src="/admin/TCAssets/js/init.js"></script>
 <script src="/admin/TCAssets/js/page.js"></script>
+<script src="/admin/TCAssets/js/post.js"></script>
 </body>
 </html>

@@ -16,3 +16,10 @@ $this->tcRouter->tcAdd('page-edit', '/admin/pages/edit/(id:int)', 'TCPageControl
 // Pages routes POST
 $this->tcRouter->tcAdd('page-add', '/admin/pages/add/', 'TCPageController:add', 'POST');
 $this->tcRouter->tcAdd('page-update', '/admin/pages/update/', 'TCPageController:update', 'POST');
+// Posts routes GET
+$this->tcRouter->tcAdd('posts', '/admin/posts/', 'TCPostController:listing');
+$this->tcRouter->tcAdd('post-create', '/admin/posts/create/', 'TCPostController:create');
+$this->tcRouter->tcAdd('post-edit', '/admin/posts/edit/(id:int)', 'TCPostController:edit');
+// Posts routes POST
+$this->tcRouter->tcAdd('post-add', '/admin/posts/add/', 'TCPostController:add', 'POST');
+$this->tcRouter->tcAdd('post-update', '/admin/posts/update/', 'TCPostController:update', 'POST');

@@ -54,10 +54,10 @@ class TCConnection {
    *
    * @return array
    */
-  public function tcQuery($tcSql, $values = []) {
+  public function tcQuery($tcSql, $values = [], $statement = PDO::FETCH_OBJ) {
     $sth = $this->tcLink->prepare($tcSql);
     $sth->execute($values);
-    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $result = $sth->fetchAll($statement);
     //
     if ($result === FALSE) {
       return [];
