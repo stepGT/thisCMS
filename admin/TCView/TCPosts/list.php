@@ -1,7 +1,7 @@
 <?php $this->tcTheme->header(); ?>
     <main>
         <div class="container">
-            <h3>Pages <a href="/admin/pages/create/">create</a></h3>
+            <h3>Posts <a href="/admin/posts/create/">create</a></h3>
             <table class="table">
                 <thead>
                 <tr>
@@ -11,13 +11,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($pages as $page) : ?>
+                <?php foreach ($posts as $post) : ?>
                     <tr>
-                        <th scope="row"><?=$page->id;?></th>
-                        <td><a href="/admin/pages/edit/<?=$page->id;?>"><?=$page->title;?></a></td>
-                        <td><?=$page->date;?></td>
+                        <th scope="row"><?= $post->id; ?></th>
+                        <td>
+                            <a href="/admin/posts/edit/<?= $post->id; ?>"><?= $post->title; ?></a>
+                        </td>
+                        <td><?= $post->date; ?></td>
                     </tr>
-                <?php endforeach;?>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

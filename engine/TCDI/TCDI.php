@@ -48,4 +48,18 @@ class TCDI {
   public function tcHas($tcKey) {
     return isset($this->tcContainer[$tcKey]) ? $this->tcContainer[$tcKey] : NULL;
   }
+
+  /**
+   * @param $key
+   * @param $value
+   */
+  public function TCDIPush($key, $element = []) {
+    //
+    if ($this->tcHas($key) !== NULL) {
+      $this->tcSet($key, []);
+    }
+    if (!empty($element)) {
+      $this->tcContainer[$key][$element['key']] = $element['value'];
+    }
+  }
 }

@@ -37,5 +37,30 @@ abstract class TCController {
     $this->tcConfig  = $this->tcDi->tcGet('tcConfig');
     $this->tcRequest = $this->tcDi->tcGet('tcRequest');
     $this->tcLoad    = $this->tcDi->tcGet('tcLoad');
+    $this->initVars();
+  }
+
+  /**
+   * @param $key
+   *
+   * @return mixed
+   */
+  public function __get($key) {
+    return $this->tcDi->tcGet($key);
+  }
+
+  /**
+   * @return $this
+   */
+  public function initVars() {
+    $vars = array_keys(get_object_vars($this));
+    //
+    foreach ($vars as $var) {
+      //
+      if ($this->tcDi->tcHas($var)) {
+        $this->{$var} = $this->tcDi->tcGet($var);
+      }
+    }
+    return $this;
   }
 }

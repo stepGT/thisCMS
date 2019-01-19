@@ -2,35 +2,46 @@
 
 namespace Engine;
 
+use Engine\TCDI\TCDI;
+
 class TCLoad {
 
   const TC_MASK_MODEL_ENTITY = '\%s\TCModel\%s\%s';
 
   const TC_MASK_MODEL_REPOSITORY = '\%s\TCModel\%s\%sRepository';
 
+  public $tcDi;
+
+  /**
+   * TCLoad constructor.
+   *
+   * @param \Engine\TCDI\TCDI $tcDi
+   */
+  public function __construct(TCDI $tcDi) {
+    $this->tcDi = $tcDi;
+  }
+
   /**
    * @param $modelName
    * @param bool $modelDir
    *
-   * @return \stdClass
+   * @return bool
    */
   public function tcModel($modelName, $modelDir = FALSE) {
-    global $tcDi;
     $modelName = ucfirst($modelName);
-    $model     = new \stdClass();
     $modelDir  = $modelDir ? $modelDir : $modelName;
     //
-    $nameSpaceEntity = sprintf(
-      self::TC_MASK_MODEL_ENTITY,
-      ENV, $modelDir, $modelName
-    );
-    //
-    $nameSpaceRepository = sprintf(
+    $nameSpaceModel = sprintf(
       self::TC_MASK_MODEL_REPOSITORY,
       ENV, $modelDir, $modelName
     );
-    $model->entity     = $nameSpaceEntity;
-    $model->repository = new $nameSpaceRepository($tcDi);
-    return $model;
+    $isClassModel = class_exists($nameSpaceModel);
+    //
+    if ($isClassModel) {
+      $modelRegistry = $this->tcDi->tcGet('tcModel') ?: new \stdClass();
+      $modelRegistry->{$modelName} = new $nameSpaceModel($this->tcDi);
+      $this->tcDi->tcSet('tcModel', $modelRegistry);
+    }
+    return $isClassModel;
   }
 }
