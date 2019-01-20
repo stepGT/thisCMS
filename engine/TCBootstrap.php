@@ -7,6 +7,7 @@
  */
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/TCFunction.php';
 
 use Engine\TCApp;
 use Engine\TCDI\TCDI;

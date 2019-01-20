@@ -31,24 +31,24 @@ class TCView {
    *
    * @throws \Exception
    */
-  public function tcRender($tcTemplate, $tcVars = []) {
-    $tcTemplatePath = $this->tcGetTemplatePath($tcTemplate, ENV);
+  public function tcRender($template, $vars = []) {
+    $templatePath = $this->tcGetTemplatePath($template, ENV);
     //
-    if (!is_file($tcTemplatePath)) {
+    if (!is_file($templatePath)) {
       throw new \InvalidArgumentException(
-        sprintf('Template "%s" not found in "%s"', $tcTemplate, $tcTemplatePath)
+        sprintf('Template "%s" not found in "%s"', $template, $templatePath)
       );
     }
-    $tcVars['lang'] = $this->tcDi->tcGet('tcLanguage');
-    $this->tcTheme->setTcData($tcVars);
-    extract($tcVars);
+    $vars['lang'] = $this->tcDi->tcGet('tcLanguage');
+    $this->tcTheme->TCThemeSetData($vars);
+    extract($vars);
     // Buffer
     ob_start();
     // Turn off implicit flush
     ob_implicit_flush(0);
     //
     try {
-      require $tcTemplatePath;
+      require $templatePath;
     } catch (\Exception $e) {
       ob_end_clean();
       throw $e;
@@ -58,16 +58,16 @@ class TCView {
   }
 
   /**
-   * @param $tcTemplate
-   * @param null $tcEnv
+   * @param $template
+   * @param null $env
    *
    * @return string
    */
-  private function tcGetTemplatePath($tcTemplate, $tcEnv = NULL) {
+  private function tcGetTemplatePath($template, $env = NULL) {
     //
-    if ($tcEnv == 'App') {
-      return TC_DIR . '/content/themes/default/' . $tcTemplate . '.php';
+    if ($env == 'App') {
+      return TC_DIR . '/content/themes/default/' . $template . '.php';
     }
-    return TC_DIR . '/TCView/' . $tcTemplate . '.php';
+    return TCFunctionPath('view') . '/' . $template . '.php';
   }
 }
