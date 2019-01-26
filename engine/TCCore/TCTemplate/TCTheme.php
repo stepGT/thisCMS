@@ -25,6 +25,15 @@ class TCTheme {
 
   protected static $tcData = [];
 
+  public $asset;
+
+  public $theme;
+
+  function __construct() {
+    $this->theme = $this;
+    $this->asset = new TCAsset();
+  }
+
   /**
    * @return string
    */
