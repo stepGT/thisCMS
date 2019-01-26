@@ -6,5 +6,8 @@
  * Time: 9:26 PM
  */
 return [
-  'base_url' => ''
+  'baseUrl'         => 'http://thiscms',
+  'defaultLang'     => 'http://thiscms',
+  'defaultTimezone' => 'America/Chicago',
+  'defaultTheme'    => 'default'
 ];

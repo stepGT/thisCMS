@@ -31,7 +31,7 @@ class TCConnection {
    * @return $this
    */
   public function tcConnect() {
-    $config = TCConfig::file('TCDatabase');
+    $config = TCConfig::group('TCDatabase');
     $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . ';charset=' . $config['charset'];
     $this->tcLink = new PDO($dsn, $config['username'], $config['password']);
     return $this;

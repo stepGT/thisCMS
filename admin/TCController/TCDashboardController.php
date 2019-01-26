@@ -14,11 +14,10 @@ class TCDashboardController extends TCAdminController {
    *
    */
   public function tcIndex() {
-    //$userModel = $this->tcLoad->tcModel('TCUser');
-    //$userModel->repository->test();
-    /*print '<pre>';
-    print_r($userModel->repository->tcGetUsers());
-    print '</pre>';*/
+    // Load models
+    $this->tcLoad->tcModel('TCUser');
+    // Load language
+    $this->tcLoad->TCLanguage('dashboard/main');
     $this->tcView->tcRender('dashboard');
   }
 }

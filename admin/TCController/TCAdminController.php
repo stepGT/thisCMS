@@ -30,9 +30,8 @@ class TCAdminController extends TCController {
       header('Location: /admin/login/');
       exit;
     }
-    else {
-      $this->tcCheckAuthorization();
-    }
+    // Load global language
+    $this->tcLoad->tcLanguage('dashboard/menu');
   }
 
   /**

@@ -9,6 +9,8 @@
 namespace Engine\TCCore\TCTemplate;
 
 
+use Engine\TCCore\TCConfig\TCConfig;
+
 class TCTheme {
 
   const TC_RULES_NAME_FILE = [
@@ -17,96 +19,80 @@ class TCTheme {
     'sidebar' => 'sidebar-%s',
   ];
 
-  public $tcUrl = '';
+  const TC_URL_THEME_MASK = '/content/themes/%s';
 
-  protected $tcData = [];
+  protected static $tcUrl = '';
+
+  protected static $tcData = [];
 
   /**
-   * @param null $tcName
+   * @return string
    */
-  public function header($tcName = NULL) {
-    $tcName = (string) $tcName;
-    $tcFile = 'header';
-    //
-    if ($tcName !== '') {
-      $tcFile = sprintf(self::TC_RULES_NAME_FILE['header'], $tcName);
-    }
-    $this->tcLoadTemplateFile($tcFile);
+  public static function getURL() {
+    $currentTheme = TCConfig::item('defaultTheme');
+    return sprintf(self::TC_URL_THEME_MASK, $currentTheme);
   }
 
   /**
-   * @param string $tcName
+   * @param null $name
    */
-  public function footer($tcName = '') {
-    $tcName = (string) $tcName;
-    $tcFile = 'footer';
-    //
-    if ($tcName !== '') {
-      $tcFile = sprintf(self::TC_RULES_NAME_FILE['footer'], $tcName);
-    }
-    $this->tcLoadTemplateFile($tcFile);
+  public static function header($name = NULL) {
+    $name = (string) $name;
+    $file = self::TCThemeDetectNameFile($name, __FUNCTION__);
+    TCComponent::TCComponentLoad($file);
   }
 
   /**
-   * @param string $tcName
+   * @param string $name
    */
-  public function sidebar($tcName = '') {
-    $tcName = (string) $tcName;
-    $tcFile = 'sidebar';
-    //
-    if ($tcName !== '') {
-      $tcFile = sprintf(self::TC_RULES_NAME_FILE['sidebar'], $tcName);
-    }
-    $this->tcLoadTemplateFile($tcFile);
+  public static function footer($name = '') {
+    $name = (string) $name;
+    $file = self::TCThemeDetectNameFile($name, __FUNCTION__);
+    TCComponent::TCComponentLoad($file);
   }
 
   /**
-   * @param string $tcName
-   * @param array $tcData
+   * @param string $name
    */
-  public function block($tcName = '', $tcData = []) {
-    $tcName = (string) $tcName;
-    //
-    if ($tcName !== '') {
-      $this->tcLoadTemplateFile($tcName, $tcData);
-    }
+  public static function sidebar($name = '') {
+    $name = (string) $name;
+    $file = self::TCThemeDetectNameFile($name, __FUNCTION__);
+    TCComponent::TCComponentLoad($file);
   }
 
   /**
-   * @param $tcFileName
-   * @param array $tcData
-   *
-   * @throws \Exception
+   * @param string $name
+   * @param array $data
    */
-  private function tcLoadTemplateFile($tcFileName, $tcData = []) {
-    $tcTemplateFile = TC_DIR . '/content/themes/default/' . $tcFileName . '.php';
+  public static function block($name = '', $data = []) {
+    $name = (string) $name;
     //
-    if (ENV == 'Admin') {
-      $tcTemplateFile = TC_DIR . '/TCView/' . $tcFileName . '.php';
-    }
-    //
-    if (is_file($tcTemplateFile)) {
-      extract(array_merge($tcData, $this->tcData));
-      require_once $tcTemplateFile;
-    }
-    else {
-      throw new \Exception(
-        sprintf('View file %s does not exist!', $tcTemplateFile)
-      );
+    if ($name !== '') {
+      TCComponent::TCComponentLoad($name, $data);
     }
   }
 
   /**
    * @return array
    */
-  public function getTcData() {
-    return $this->tcData;
+  public static function TCThemeGetData() {
+    return static::$tcData;
   }
 
   /**
-   * @param array $tcData
+   * @param array $data
    */
-  public function setTcData($tcData) {
-    $this->tcData = $tcData;
+  public static function TCThemeSetData($data) {
+    static::$tcData = $data;
+  }
+
+  /**
+   * @param $name
+   * @param $function
+   *
+   * @return string
+   */
+  private static function TCThemeDetectNameFile($name, $function) {
+    return empty(trim($name)) ? $function : sprintf(self::TC_RULES_NAME_FILE[$function], $name);
   }
 }
