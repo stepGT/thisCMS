@@ -32,6 +32,7 @@ class TCView {
    * @throws \Exception
    */
   public function tcRender($template, $vars = []) {
+    include_once TCTheme::TCThemeGetThemePath() . '/functions.php';
     $templatePath = $this->tcGetTemplatePath($template, ENV);
     //
     if (!is_file($templatePath)) {

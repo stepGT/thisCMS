@@ -35,17 +35,6 @@
         </div>
     </div>
 </footer>
-
-<!-- jQuery -->
-<script src="<?php echo \Engine\TCCore\TCTemplate\TCTheme::getURL();?>/vendor/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?php echo \Engine\TCCore\TCTemplate\TCTheme::getURL();?>/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Contact Form JavaScript -->
-<script src="<?php echo \Engine\TCCore\TCTemplate\TCTheme::getURL();?>/js/jqBootstrapValidation.js"></script>
-<script src="<?php echo \Engine\TCCore\TCTemplate\TCTheme::getURL();?>/js/contact_me.js"></script>
-<!-- Theme JavaScript -->
-<script src="<?php echo \Engine\TCCore\TCTemplate\TCTheme::getURL();?>/js/clean-blog.min.js"></script>
+<?php TCAsset::render('js');?>
 </body>
 </html>
