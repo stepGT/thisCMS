@@ -14,7 +14,7 @@ class TCCommon {
   /**
    * @return bool
    */
-  public function tcIsPost() {
+  public static function tcIsPost() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       return TRUE;
     }
