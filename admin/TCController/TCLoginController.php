@@ -57,8 +57,8 @@ class TCLoginController extends TCController {
     if (!empty($query)) {
       $user = $query[0];
       //
-      if ($user['role'] == 'admin') {
-        $hash = md5($user['id'] . $user['email'] . $user['password'] . $this->tcAuth->salt());
+      if ($user->role == 'admin') {
+        $hash = md5($user->id . $user->email . $user->password . $this->tcAuth->salt());
 
         // NOT WORK UPDATE hash FIELD!!!
         /*$sql = $queryBuilder
@@ -70,7 +70,7 @@ class TCLoginController extends TCController {
         $this->tcDB->tcExecute('
           UPDATE `tc_user`
           SET `hash` = "' . $hash . '"
-          WHERE `id` = ' . $user['id'] . '
+          WHERE `id` = ' . $user->id . '
         ');
 
         //$this->tcDB->tcExecute($sql, $queryBuilder->values);
