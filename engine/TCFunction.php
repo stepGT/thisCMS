@@ -6,22 +6,27 @@
  * @return string
  */
 function TCFunctionPath($section) {
+  $pathMask = TC_DIR . DIRECTORY_SEPARATOR . '%s';
+  //
+  if (ENV == 'App') {
+    $pathMask = TC_DIR . DIRECTORY_SEPARATOR . strtolower(ENV) . DIRECTORY_SEPARATOR . '%s';
+  }
   // Return path to correct section
   switch (strtolower($section)) {
     case 'controller':
-      return TC_DIR . DIRECTORY_SEPARATOR . 'TCController';
+      return sprintf($pathMask, 'TCController');
       break;
     case 'config':
-      return TC_DIR . DIRECTORY_SEPARATOR . 'TCConfig';
+      return sprintf($pathMask, 'TCConfig');
       break;
     case 'model':
-      return TC_DIR . DIRECTORY_SEPARATOR . 'TCModel';
+      return sprintf($pathMask, 'TCModel');
       break;
     case 'view':
-      return TC_DIR . DIRECTORY_SEPARATOR . 'TCView';
+      return sprintf($pathMask, 'TCView');
       break;
     case 'language':
-      return TC_DIR . DIRECTORY_SEPARATOR . 'TCLanguage';
+      return sprintf($pathMask, 'TCLanguage');
       break;
     default:
       return TC_DIR;

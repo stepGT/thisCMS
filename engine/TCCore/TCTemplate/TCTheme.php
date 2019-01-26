@@ -9,6 +9,8 @@
 namespace Engine\TCCore\TCTemplate;
 
 
+use Engine\TCCore\TCConfig\TCConfig;
+
 class TCTheme {
 
   const TC_RULES_NAME_FILE = [
@@ -17,9 +19,19 @@ class TCTheme {
     'sidebar' => 'sidebar-%s',
   ];
 
+  const TC_URL_THEME_MASK = '/content/themes/%s';
+
   protected static $tcUrl = '';
 
   protected static $tcData = [];
+
+  /**
+   * @return string
+   */
+  public static function getURL() {
+    $currentTheme = TCConfig::item('defaultTheme');
+    return sprintf(self::TC_URL_THEME_MASK, $currentTheme);
+  }
 
   /**
    * @param null $name
