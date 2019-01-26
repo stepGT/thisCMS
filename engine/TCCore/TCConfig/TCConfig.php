@@ -12,41 +12,78 @@ namespace Engine\TCCore\TCConfig;
 class TCConfig {
 
   /**
-   * @param $key
-   * @param string $group
+   * Retrieves a config item.
    *
-   * @return null
+   * @param  string $key
+   * @param  string $group
+   *
+   * @return mixed
    */
   public static function item($key, $group = 'TCMain') {
-    $groupItems = static::file($group);
-    return isset($groupItems[$key]) ? $groupItems[$key] : NULL;
+    if (!TCRepository::retrieve($group, $key)) {
+      self::file($group);
+    }
+
+    return TCRepository::retrieve($group, $key);
   }
 
   /**
-   * @param $group
+   * Retrieves a group config items.
    *
-   * @return bool|mixed
+   * @param  string $group The item group.
+   *
+   * @return mixed
+   */
+  public static function group($group) {
+    if (!TCRepository::retrieveGroup($group)) {
+      self::file($group);
+    }
+
+    return TCRepository::retrieveGroup($group);
+  }
+
+  /**
+   * @param string $group
+   *
+   * @return bool
    * @throws \Exception
    */
-  public static function file($group) {
-    $path = $_SERVER['DOCUMENT_ROOT'] . '/' . mb_strtolower(ENV) . '/TCConfig/' . $group . '.php';
-    //
+  public static function file($group = 'TCMain') {
+    $path = TCFunctionPath('config') . DIRECTORY_SEPARATOR . $group . '.php';
+
+    // Check that the file exists before we attempt to load it.
     if (file_exists($path)) {
-      $items = require_once $path;
-      //
-      if (!empty($items)) {
-        return $items;
+      // Get items from the file.
+      $items = include $path;
+
+      // Items must be an array.
+      if (is_array($items)) {
+        // Store items.
+        foreach ($items as $key => $value) {
+          TCRepository::store($group, $key, $value);
+        }
+
+        // Successful file load.
+        return TRUE;
       }
       else {
         throw new \Exception(
-          sprintf('Config file <strong>%s</strong> is not a valid array', $path)
+          sprintf(
+            'Config file <strong>%s</strong> is not a valid array.',
+            $path
+          )
         );
       }
     }
     else {
       throw new \Exception(
-        sprintf('Cannot load config from file, file <strong>%s</strong> does not exist', $path)
+        sprintf(
+          'Cannot load config from file, file <strong>%s</strong> does not exist.',
+          $path
+        )
       );
     }
+    // File load unsuccessful.
+    return FALSE;
   }
 }
