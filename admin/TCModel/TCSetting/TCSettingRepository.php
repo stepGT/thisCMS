@@ -23,6 +23,20 @@ class TCSettingRepository extends TCModel {
     return $this->tcDB->tcQuery($sql);
   }
 
+  /**
+   * @param $keyField
+   *
+   * @return null
+   */
+  public function TCSettingRepositoryGetSettingValue($keyField) {
+    $sql = $this->tcQueryBuilder->select('value')
+      ->from('tc_setting')
+      ->where('key_field', $keyField)
+      ->sql();
+    $query = $this->tcDB->tcQuery($sql, $this->tcQueryBuilder->values);
+    return isset($query[0]) ? $query[0]->value : NULL;
+  }
+
   public function update(array $params) {
     //
     if (!empty($params)) {
