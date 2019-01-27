@@ -43,6 +43,12 @@ class TCTheme {
     return sprintf(self::TC_URL_THEME_MASK, $baseURL, $currentTheme);
   }
 
+  public static function title() {
+    $nameSite     = TCSetting::TCSettingGet('name_site');
+    $description  = TCSetting::TCSettingGet('description');
+    echo $nameSite . ' | ' . $description;
+  }
+
   /**
    * @param null $name
    */
