@@ -12,6 +12,7 @@ require_once __DIR__ . '/TCFunction.php';
 class_alias('Engine\\TCCore\\TCTemplate\\TCAsset', 'TCAsset');
 class_alias('Engine\\TCCore\\TCTemplate\\TCTheme', 'TCTheme');
 class_alias('Engine\\TCCore\\TCTemplate\\TCSetting', 'TCSetting');
+class_alias('Engine\\TCCore\\TCTemplate\\TCMenu', 'TCMenu');
 
 use Engine\TCApp;
 use Engine\TCDI\TCDI;

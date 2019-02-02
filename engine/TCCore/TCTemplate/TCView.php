@@ -19,6 +19,8 @@ class TCView {
 
   protected $setting;
 
+  protected $menu;
+
   /**
    * TCView constructor.
    */
@@ -26,6 +28,7 @@ class TCView {
     $this->tcDi = $tcDi;
     $this->tcTheme = new TCTheme();
     $this->setting = new TCSetting($tcDi);
+    $this->menu    = new TCMenu($tcDi);
   }
 
   /**
