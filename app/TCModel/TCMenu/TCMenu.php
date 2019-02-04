@@ -24,21 +24,6 @@ class TCMenu {
   public $name;
 
   /**
-   * @var $parent
-   */
-  public $parent;
-
-  /**
-   * @var $position
-   */
-  public $position;
-
-  /**
-   * @var $link
-   */
-  public $link;
-
-  /**
    * @return mixed
    */
   public function getId() {
@@ -64,47 +49,5 @@ class TCMenu {
    */
   public function setName($name) {
     $this->name = $name;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getParent() {
-    return $this->parent;
-  }
-
-  /**
-   * @param mixed $parent
-   */
-  public function setParent($parent) {
-    $this->parent = $parent;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getPosition() {
-    return $this->position;
-  }
-
-  /**
-   * @param mixed $position
-   */
-  public function setPosition($position) {
-    $this->position = $position;
-  }
-
-  /**
-   * @return mixed
-   */
-  public function getLink() {
-    return $this->link;
-  }
-
-  /**
-   * @param mixed $link
-   */
-  public function setLink($link) {
-    $this->link = $link;
   }
 }
