@@ -22,6 +22,19 @@ class TCSettingController extends TCAdminController {
   }
 
   /**
+   *
+   */
+  public function menus() {
+    $this->TCLoad->tcModel('TCMenu', FALSE, 'App');
+    $this->TCLoad->tcModel('TCMenuItem', FALSE, 'App');
+    //
+    $this->data['menuId']   = $this->TCRequest->tcGet('menu_id');
+    $this->data['menus']    = $this->TCModel->TCMenu->getList();
+    $this->data['editMenu'] = $this->TCModel->TCMenuItem->getItems($this->data['menu_id']);
+    //
+    $this->tcView->tcRender('TCSetting/menus', $this->data);
+  }
+  /**
    * @return mixed
    */
   public function TCSettingControllerUpdateSetting() {
