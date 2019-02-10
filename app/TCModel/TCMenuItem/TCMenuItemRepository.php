@@ -61,4 +61,18 @@ class TCMenuItemRepository extends TCModel {
       }
     }
   }
+
+  /**
+   * @param $itemId
+   *
+   * @return mixed
+   */
+  public function TCMenuItemRepositoryRemove($itemId) {
+    $sql = $this->tcQueryBuilder
+      ->delete()
+      ->from('tc_menu_item')
+      ->where('id', $itemId)
+      ->sql();
+    return $this->tcDB->tcQuery($sql, $this->tcQueryBuilder->values);
+  }
 }

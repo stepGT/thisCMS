@@ -81,6 +81,18 @@ class TCSettingController extends TCAdminController {
   }
 
   /**
+   *
+   */
+  public function ajaxMenuRemoveItem() {
+    $params = $this->tcRequest->tcPost;
+    $this->tcLoad->tcModel('TCMenuItem', FALSE, 'App');
+    if (isset($params['item_id']) && strlen($params['item_id']) > 0) {
+      $removeItem = $this->tcModel->TCMenuItem->TCMenuItemRepositoryRemove($params['item_id']);
+      echo $removeItem;
+    }
+  }
+
+  /**
    * @return mixed
    */
   public function TCSettingControllerUpdateSetting() {
