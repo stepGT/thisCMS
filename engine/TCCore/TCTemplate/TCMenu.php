@@ -26,6 +26,6 @@ class TCMenu {
    * @return mixed
    */
   public static function getItems() {
-    return self::$menuRepository->getAllItems();
+    return self::$menuRepository->getList();
   }
 }
