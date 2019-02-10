@@ -8,6 +8,7 @@
 
 namespace Admin\TCController;
 
+use Engine\TCCore\TCTemplate\TCTheme;
 
 class TCSettingController extends TCAdminController {
 
@@ -25,15 +26,60 @@ class TCSettingController extends TCAdminController {
    *
    */
   public function menus() {
-    $this->TCLoad->tcModel('TCMenu', FALSE, 'App');
-    $this->TCLoad->tcModel('TCMenuItem', FALSE, 'App');
+    $this->tcLoad->tcModel('TCMenu', FALSE, 'App');
+    $this->tcLoad->tcModel('TCMenuItem', FALSE, 'App');
     //
-    $this->data['menuId']   = $this->TCRequest->tcGet('menu_id');
-    $this->data['menus']    = $this->TCModel->TCMenu->getList();
-    $this->data['editMenu'] = $this->TCModel->TCMenuItem->getItems($this->data['menu_id']);
+    $this->data['menuId']   = $this->tcRequest->tcGet['menu_id'];
+    $this->data['menus']    = $this->tcModel->TCMenu->getList();
+    $this->data['editMenu'] = $this->tcModel->TCMenuItem->getItems($this->data['menuId']);
     //
     $this->tcView->tcRender('TCSetting/menus', $this->data);
   }
+
+  /**
+   *
+   */
+  public function ajaxMenuAdd() {
+    $params = $this->tcRequest->tcPost;
+    $this->tcLoad->tcModel('TCMenu', FALSE, 'App');
+    //
+    if (isset($params['name']) && strlen($params['name']) > 0) {
+      $addMenu = $this->tcModel->TCMenu->add($params);
+      echo $addMenu;
+    }
+  }
+
+  /**
+   *
+   */
+  public function ajaxMenuAddItem() {
+    $params = $this->tcRequest->tcPost;
+    $this->tcLoad->tcModel('TCMenuItem', FALSE, 'App');
+    //
+    if (isset($params['menu_id']) && strlen($params['menu_id']) > 0) {
+      $id = $this->tcModel->TCMenuItem->add($params);
+      $item = new \stdClass;
+      $item->id   = $id;
+      $item->name = \App\TCModel\TCMenuItem\TCMenuItemRepository::TC_NEW_MENU_ITEM_NAME;
+      $item->link = '#';
+      //
+      TCTheme::block('TCSetting/menu_item', [
+        'item' => $item,
+      ]);
+    }
+  }
+
+  /**
+   *
+   */
+  public function ajaxMenuSortItems() {
+    $params = $this->tcRequest->tcPost;
+    $this->tcLoad->tcModel('TCMenuItem', FALSE, 'App');
+    if (isset($params['data']) && !empty($params['data'])) {
+      $sortItem = $this->tcModel->TCMenuItem->TCMenuItemRepositorySort($params);
+    }
+  }
+
   /**
    * @return mixed
    */

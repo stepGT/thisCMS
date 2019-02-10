@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col">
                     <div class="setting-tabs">
-                      <?php TCTheme::block('setting/tabs') ?>
+                      <?php TCTheme::block('TCSetting/tabs') ?>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                              value="<?php echo $menuId ?>"/>
                       <ol id="listItems" class="edit-menu">
                         <?php foreach ($editMenu as $item) {
-                          TCTheme::block('setting/menu_item', [
+                          TCTheme::block('TCSetting/menu_item', [
                             'item' => $item,
                           ]);
                         } ?>
