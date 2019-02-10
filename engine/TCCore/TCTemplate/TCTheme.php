@@ -19,18 +19,34 @@ class TCTheme {
     'sidebar' => 'sidebar-%s',
   ];
 
-  const TC_URL_THEME_MASK = '/content/themes/%s';
+  const TC_URL_THEME_MASK = '%s/content/themes/%s';
 
   protected static $tcUrl = '';
 
   protected static $tcData = [];
+
+  public $asset;
+
+  public $theme;
+
+  function __construct() {
+    $this->theme = $this;
+    $this->asset = new TCAsset();
+  }
 
   /**
    * @return string
    */
   public static function getURL() {
     $currentTheme = TCConfig::item('defaultTheme');
-    return sprintf(self::TC_URL_THEME_MASK, $currentTheme);
+    $baseURL      = TCConfig::item('baseUrl');
+    return sprintf(self::TC_URL_THEME_MASK, $baseURL, $currentTheme);
+  }
+
+  public static function title() {
+    $nameSite     = TCSetting::TCSettingGet('name_site');
+    $description  = TCSetting::TCSettingGet('description');
+    echo $nameSite . ' | ' . $description;
   }
 
   /**
@@ -94,5 +110,13 @@ class TCTheme {
    */
   private static function TCThemeDetectNameFile($name, $function) {
     return empty(trim($name)) ? $function : sprintf(self::TC_RULES_NAME_FILE[$function], $name);
+  }
+
+
+  /**
+   * @return string
+   */
+  public static function TCThemeGetThemePath() {
+    return TC_DIR . '/content/themes/default';
   }
 }

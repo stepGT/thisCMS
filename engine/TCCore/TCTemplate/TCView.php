@@ -17,12 +17,18 @@ class TCView {
 
   protected $tcTheme;
 
+  protected $setting;
+
+  protected $menu;
+
   /**
    * TCView constructor.
    */
   public function __construct(TCDI $tcDi) {
     $this->tcDi = $tcDi;
     $this->tcTheme = new TCTheme();
+    $this->setting = new TCSetting($tcDi);
+    $this->menu    = new TCMenu($tcDi);
   }
 
   /**
@@ -32,6 +38,11 @@ class TCView {
    * @throws \Exception
    */
   public function tcRender($template, $vars = []) {
+    // If isset functions.php - include
+    $function_file = TCTheme::TCThemeGetThemePath() . '/functions.php';
+    if (file_exists($function_file)) {
+      include_once $function_file;
+    }
     $templatePath = $this->tcGetTemplatePath($template, ENV);
     //
     if (!is_file($templatePath)) {

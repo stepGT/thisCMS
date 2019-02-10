@@ -9,6 +9,13 @@ $this->tcTheme->header(); ?>
         </div>
         <div class="row">
             <div class="col">
+                <div class="setting-tabs">
+                  <?php TCTheme::block('TCSetting/tabs') ?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <form id="settingForm">
                   <?php foreach ($settings as $setting): ?>
                     <?php if ($setting->key_field == 'language'): ?>
