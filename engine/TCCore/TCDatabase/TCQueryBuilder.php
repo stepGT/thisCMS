@@ -27,6 +27,15 @@ class TCQueryBuilder {
   }
 
   /**
+   * @return $this
+   */
+  public function delete() {
+    $this->reset();
+    $this->sql['delete'] = "DELETE ";
+    return $this;
+  }
+
+  /**
    * @param $table
    *
    * @return $this

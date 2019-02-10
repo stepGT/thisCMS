@@ -25,5 +25,10 @@ $this->tcRouter->tcAdd('post-add', '/admin/posts/add/', 'TCPostController:add', 
 $this->tcRouter->tcAdd('post-update', '/admin/posts/update/', 'TCPostController:update', 'POST');
 // Settings Routes (GET)
 $this->tcRouter->tcAdd('settings-general', '/admin/settings/general/', 'TCSettingController:general');
+$this->tcRouter->tcAdd('settings-menus', '/admin/settings/appearance/menus/', 'TCSettingController:menus');
 
 $this->tcRouter->tcAdd('setting-update', '/admin/settings/update/', 'TCSettingController:TCSettingControllerUpdateSetting', 'POST');
+$this->tcRouter->tcAdd('settings-add-menu', '/admin/setting/ajaxMenuAdd/', 'TCSettingController:ajaxMenuAdd', 'POST');
+$this->tcRouter->tcAdd('settings-add-menu-item', '/admin/setting/ajaxMenuAddItem/', 'TCSettingController:ajaxMenuAddItem', 'POST');
+$this->tcRouter->tcAdd('settings-sort-menu-item', '/admin/setting/ajaxMenuSortItems/', 'TCSettingController:ajaxMenuSortItems', 'POST');
+$this->tcRouter->tcAdd('settings-remove-menu-item', '/admin/setting/ajaxMenuRemoveItem/', 'TCSettingController:ajaxMenuRemoveItem', 'POST');

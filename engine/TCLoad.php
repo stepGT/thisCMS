@@ -24,19 +24,22 @@ class TCLoad {
     return $this;
   }
 
+
   /**
    * @param $modelName
    * @param bool $modelDir
+   * @param bool $env
    *
    * @return bool
    */
-  public function tcModel($modelName, $modelDir = FALSE) {
+  public function tcModel($modelName, $modelDir = FALSE, $env = FALSE) {
     $modelName = ucfirst($modelName);
     $modelDir  = $modelDir ? $modelDir : $modelName;
+    $env       = $env ? $env : ENV;
     //
     $nameSpaceModel = sprintf(
       self::TC_MASK_MODEL_REPOSITORY,
-      ENV, $modelDir, $modelName
+      $env, $modelDir, $modelName
     );
     $isClassModel = class_exists($nameSpaceModel);
     //

@@ -19,7 +19,7 @@ class TCComponent {
     //
     if (is_file($templateFile)) {
       extract(array_merge($data, TCTheme::TCThemeGetData()));
-      require_once $templateFile;
+      require $templateFile;
     }
     else {
       throw new \Exception(
