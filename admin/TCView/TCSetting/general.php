@@ -1,33 +1,35 @@
 <?php
 $this->tcTheme->header(); ?>
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="col page-title">
-                <h3>Settings</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="setting-tabs">
-                  <?php TCTheme::block('TCSetting/tabs') ?>
+    <main>
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="sixteen wide column">
+                    <div class="col page-title">
+                        <h2 class="ui header">
+                            Settings
+                        </h2>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <form id="settingForm">
-                  <?php foreach ($settings as $setting): ?>
-                    <?php if ($setting->key_field == 'language'): ?>
-                          <div class="form-group row">
-                              <label for="formLangSite"
-                                     class="col-2 col-form-label">
-                                <?= $setting->name ?>
-                              </label>
-                              <div class="col-10">
-                                  <select class="form-control"
-                                          name="<?= $setting->key_field ?>"
-                                          id="formLangSite">
+            <div class="ui grid">
+                <div class="sixteen wide column">
+                    <div class="setting-tabs">
+                      <?php TCTheme::block('setting/tabs') ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui grid">
+                <div class="sixteen wide column">
+                    <form id="settingForm" class="ui form">
+                      <?php foreach ($settings as $setting): ?>
+                        <?php if ($setting->key_field == 'language'): ?>
+                              <div class="field">
+                                  <label>
+                                    <?= $setting->name ?>
+                                  </label>
+                                  <select name="<?= $setting->key_field ?>"
+                                          class="ui search dropdown">
                                     <?php foreach ($languages as $language): ?>
                                         <option value="<?= $language->info->key ?>">
                                           <?= $language->info->title ?>
@@ -35,28 +37,23 @@ $this->tcTheme->header(); ?>
                                     <?php endforeach; ?>
                                   </select>
                               </div>
-                          </div>
-                    <?php else: ?>
-                          <div class="form-group row">
-                              <label for="formNameSite"
-                                     class="col-2 col-form-label">
-                                <?= $setting->name ?>
-                              </label>
-                              <div class="col-10">
-                                  <input class="form-control" type="text"
+                        <?php else: ?>
+                              <div class="field">
+                                  <label>
+                                    <?= $setting->name ?>
+                                  </label>
+                                  <input type="text"
                                          name="<?= $setting->key_field ?>"
-                                         value="<?= $setting->value ?>"
-                                         id="formNameSite">
+                                         value="<?= $setting->value ?>">
                               </div>
-                          </div>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                    <button onclick="setting.update()" type="submit" class="btn btn-primary">
-                        Save changes
-                    </button>
-                </form>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                        <button type="submit" class="ui primary button"
+                                onclick="setting.update(this); return false;">
+                            Save changes
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</main>
-<?php $this->tcTheme->footer(); ?>
+    </main>

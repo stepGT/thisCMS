@@ -8,13 +8,16 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <title>Админ-панель</title>
-    <!-- Bootstrap core CSS -->
-    <link href="/admin/TCAssets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/admin/TCAssets/semantic/semantic.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/admin/TCAssets/semantic/components/dropdown.min.css">
+    <link rel="stylesheet" href="/admin/TCAssets/semantic/components/transition.min.css">
+    <link rel="stylesheet" href="/admin/TCAssets/semantic/components/icon.min.css">
+    <link rel="stylesheet" href="/admin/TCAssets/semantic/components/segment.min.css">
+    <link rel="stylesheet" href="/admin/TCAssets/semantic/components/sidebar.min.css">
     <!-- Custom styles for this template -->
     <link href="/admin/TCAssets/css/dashboard.css" rel="stylesheet">
     <!-- simplelineicons for this template -->
-    <link rel="stylesheet"
-          href="//cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
     <link rel="stylesheet" href="/admin/TCAssets/js/plugins/redactor/redactor.css">
 </head>
 <body>
