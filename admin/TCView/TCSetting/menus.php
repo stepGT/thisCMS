@@ -14,7 +14,7 @@
             <div class="ui grid">
                 <div class="sixteen wide column">
                     <div class="setting-tabs">
-                      <?php Theme::block('setting/tabs') ?>
+                      <?php TCTheme::block('TCSetting/tabs') ?>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                              value="<?php echo $menuId ?>"/>
                       <ol id="listItems" class="edit-menu">
                         <?php foreach ($editMenu as $item) {
-                          Theme::block('setting/menu_item', [
+                          TCTheme::block('TCSetting/menu_item', [
                             'item' => $item,
                           ]);
                         } ?>

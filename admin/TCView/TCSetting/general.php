@@ -14,7 +14,7 @@ $this->tcTheme->header(); ?>
             <div class="ui grid">
                 <div class="sixteen wide column">
                     <div class="setting-tabs">
-                      <?php TCTheme::block('setting/tabs') ?>
+                      <?php TCTheme::block('TCSetting/tabs') ?>
                     </div>
                 </div>
             </div>
