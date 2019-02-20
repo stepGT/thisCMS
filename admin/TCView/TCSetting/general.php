@@ -57,3 +57,4 @@ $this->tcTheme->header(); ?>
             </div>
         </div>
     </main>
+<?php $this->tcTheme->footer(); ?>
