@@ -13,6 +13,7 @@ class_alias('Engine\\TCCore\\TCTemplate\\TCAsset', 'TCAsset');
 class_alias('Engine\\TCCore\\TCTemplate\\TCTheme', 'TCTheme');
 class_alias('Engine\\TCCore\\TCTemplate\\TCSetting', 'TCSetting');
 class_alias('Engine\\TCCore\\TCTemplate\\TCMenu', 'TCMenu');
+class_alias('Engine\\TCCore\\TCCustomize\\TCCustomize', 'TCCustomize');
 
 use Engine\TCApp;
 use Engine\TCDI\TCDI;
