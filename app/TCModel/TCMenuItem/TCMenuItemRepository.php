@@ -8,6 +8,8 @@ use Engine\TCModel;
 class TCMenuItemRepository extends TCModel {
 
   const TC_NEW_MENU_ITEM_NAME = 'New item';
+  const TC_FIELD_NAME = 'name';
+  const TC_FIELD_LINK = 'link';
 
   /**
    * @param $menuId
@@ -60,6 +62,27 @@ class TCMenuItemRepository extends TCModel {
         );
       }
     }
+  }
+
+  /**
+   * @param array $params
+   *
+   * @return int
+   */
+  public function TCMenuItemRepositoryUpdate($params = []) {
+    if (empty($params)) {
+      return 0;
+    }
+    //
+    $menuItem = new TCMenuItem($params['item_id']);
+    //
+    if ($params['field'] == self::TC_FIELD_NAME) {
+      $menuItem->setName($params['value']);
+    }
+    if ($params['field'] == self::TC_FIELD_LINK) {
+      $menuItem->setLink($params['value']);
+    }
+    return $menuItem->save();
   }
 
   /**
