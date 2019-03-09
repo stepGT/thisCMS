@@ -12,4 +12,5 @@ return [
   Engine\TCService\TCConfig\TCProvider::class,
   Engine\TCService\TCRequest\TCProvider::class,
   Engine\TCService\TCLoad\TCProvider::class,
+  Engine\TCService\TCCustomize\TCProvider::class,
 ];
