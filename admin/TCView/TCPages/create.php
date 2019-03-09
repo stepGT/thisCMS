@@ -1,33 +1,37 @@
 <?php $this->tcTheme->header(); ?>
     <main>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h3>Create page</h3>
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="sixteen wide column">
+                    <div class="col page-title">
+                        <h2 class="ui header">
+                            Create page
+                        </h2>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-9">
-                    <form>
-                        <div class="form-group">
-                            <label for="formTitle">Title</label>
-                            <input type="text" class="form-control"
-                                   id="formTitle" placeholder="">
+            <div class="ui grid">
+                <div class="twelve wide column">
+                    <form id="formPage" class="ui form">
+                        <div class="field">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-control"
+                                   id="formTitle" placeholder="Title page...">
                         </div>
-                        <div class="form-group">
+                        <div class="field">
                             <label for="redactor">Content</label>
-                            <textarea class="form-control" name="content"
-                                      id="redactor" cols="30"
-                                      rows="10"></textarea>
+                            <textarea name="content" id="redactor"></textarea>
                         </div>
                     </form>
                 </div>
-                <div class="col-3">
-                    <p>Publish this page</p>
-                    <button type="submit" class="btn btn-primary"
-                            onclick="page.add()">
-                        Publish
-                    </button>
+                <div class="four wide column">
+                    <div>
+                        <p>Publish this page</p>
+                        <button type="submit" class="ui primary button"
+                                onclick="page.add()">
+                            Publish
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

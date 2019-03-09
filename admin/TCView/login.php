@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="shortcut icon" href="favicon.ico">
-  <title>Login to thisCMS</title>
-  <!-- Bootstrap core CSS -->
-  <link href="/admin/TCAssets/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="/admin/TCAssets/css/login.css" rel="stylesheet">
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <title>Login to CMS</title>
+
+    <link href="/admin/TCAssets/semantic/semantic.min.css" rel="stylesheet">
+    <link href="/admin/TCAssets/semantic/components/grid.min.css"
+          rel="stylesheet">
+    <link href="/admin/TCAssets/semantic/components/form.min.css"
+          rel="stylesheet">
+    <link href="/admin/TCAssets/semantic/components/checkbox.min.css"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/admin/TCAssets/css/login.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-<div class="container">
-  <form action="/admin/auth/" method="POST" class="form-signin" role="form">
-    <h2 class="form-signin-heading">Login to CMS</h2>
-    <input name="email" type="email" class="form-control" placeholder="Email" required autofocus>
-    <input name="password" type="password" class="form-control" placeholder="Password" required>
-    <label class="checkbox">
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-  </form>
-</div> <!-- /container -->
+
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <form class="ui form form-login" method="POST" action="/admin/auth/">
+            <div class="fexi-login-logo">
+                <img class="ui middle aligned tiny image"
+                     src="/admin/TCAssets/images/logo.png">
+                <span>ADMIN PANEL</span>
+            </div>
+            <div class="field">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="field">
+                <input type="password" name="password" placeholder="Password"
+                       required>
+            </div>
+            <div class="field inline">
+                <div class="ui checkbox">
+                    <input type="checkbox" tabindex="0">
+                    <label>Remember me</label>
+                </div>
+            </div>
+            <button class="ui primary button">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="/admin/TCAssets/js/jquery-2.0.3.min.js"></script>
+<script src="/admin/TCAssets/semantic/semantic.min.js"></script>
+<script src="/admin/TCAssets/semantic/components/form.min.js"></script>
+<link href="/admin/TCAssets/semantic/components/checkbox.min.js" rel="stylesheet">
 </body>
 </html>

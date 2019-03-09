@@ -32,3 +32,4 @@ $this->tcRouter->tcAdd('settings-add-menu', '/admin/setting/ajaxMenuAdd/', 'TCSe
 $this->tcRouter->tcAdd('settings-add-menu-item', '/admin/setting/ajaxMenuAddItem/', 'TCSettingController:ajaxMenuAddItem', 'POST');
 $this->tcRouter->tcAdd('settings-sort-menu-item', '/admin/setting/ajaxMenuSortItems/', 'TCSettingController:ajaxMenuSortItems', 'POST');
 $this->tcRouter->tcAdd('settings-remove-menu-item', '/admin/setting/ajaxMenuRemoveItem/', 'TCSettingController:ajaxMenuRemoveItem', 'POST');
+$this->tcRouter->tcAdd('settings-update-menu-item', '/admin/setting/ajaxMenuUpdateItem/', 'TCSettingController:ajaxMenuUpdateItem', 'POST');
