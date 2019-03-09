@@ -3,8 +3,7 @@
   text-align: right;
 }
 .page-title {
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding-top: 2.5rem;
 }
 .page-title h3 { }
 .setting-tabs {
@@ -36,7 +35,8 @@ ol.example li.placeholder:before {
   margin: 0;
 }
 .edit-menu li {
-  border: 1px solid #ddd;
+  border: 1px solid rgba(34, 36, 38, .15);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
   margin-bottom: 8px;
   padding-left: 12px;
 }

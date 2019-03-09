@@ -5,6 +5,17 @@ $('#redactor').redactor({
   imagePosition: true,
   imageResizable: true
 });
+
+$(document).ready(function () {
+  // show dropdown on hover
+  $('.ui.dropdown').dropdown({
+    on: 'hover'
+  });
+
+  $('.btn-create-menu').on('click', function () {
+    $('.mini.modal').modal('show');
+  });
+});
 //
 $(function () {
   var group = $("ol.edit-menu").sortable({

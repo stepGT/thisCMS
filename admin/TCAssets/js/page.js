@@ -10,6 +10,8 @@ var page = {
       url: '/admin/pages/add/',
       type: this.ajaxMethod,
       data: formData,
+      processData: false,
+      contentType: false,
       beforeSend: function () {
       },
       success: function (result) {
@@ -27,6 +29,8 @@ var page = {
       url: '/admin/pages/update/',
       type: this.ajaxMethod,
       data: formData,
+      processData: false,
+      contentType: false,
       beforeSend: function () {
       },
       success: function (result) {

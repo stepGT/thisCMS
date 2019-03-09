@@ -1,23 +1,40 @@
 <?php $this->tcTheme->header(); ?>
     <main>
-        <div class="container">
-            <h3>Posts <a href="/admin/posts/create/">create</a></h3>
-            <table class="table">
+        <div class="ui container">
+            <div class="row">
+                <div class="col page-title">
+                    <h2 class="ui header">
+                        Posts
+                        <a href="/admin/posts/create/"
+                           class="ui primary button right floated item">
+                            Create post
+                        </a>
+                    </h2>
+                </div>
+            </div>
+
+            <table class="ui very basic table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Date</th>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($posts as $post) : ?>
+                <?php foreach ($posts as $post): ?>
                     <tr>
-                        <th scope="row"><?= $post->id; ?></th>
+                        <th scope="row">
+                          <?= $post->id ?>
+                        </th>
                         <td>
-                            <a href="/admin/posts/edit/<?= $post->id; ?>"><?= $post->title; ?></a>
+                            <a href="/admin/posts/edit/<?= $post->id ?>">
+                              <?= $post->title ?>
+                            </a>
                         </td>
-                        <td><?= $post->date; ?></td>
+                        <td>
+                          <?= $post->date ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
