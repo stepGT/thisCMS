@@ -78,7 +78,7 @@ class TCView {
     //
     if ($env == 'App') {
       $theme = \TCSetting::TCSettingGet('active_theme');
-      if($theme) {
+      if($theme == '') {
         $theme = \Engine\TCCore\TCConfig\TCConfig::item('defaultTheme');
       }
       return TC_DIR . '/content/themes/' . $theme . '/' . $template . '.php';
