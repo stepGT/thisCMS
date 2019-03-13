@@ -77,7 +77,11 @@ class TCView {
   private function tcGetTemplatePath($template, $env = NULL) {
     //
     if ($env == 'App') {
-      return TC_DIR . '/content/themes/default/' . $template . '.php';
+      $theme = \TCSetting::TCSettingGet('active_theme');
+      if($theme) {
+        $theme = \Engine\TCCore\TCConfig\TCConfig::item('defaultTheme');
+      }
+      return TC_DIR . '/content/themes/' . $theme . '/' . $template . '.php';
     }
     return TCFunctionPath('view') . '/' . $template . '.php';
   }
