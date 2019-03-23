@@ -12,15 +12,18 @@ use Engine\TCModel;
 
 class TCSettingRepository extends TCModel {
 
+  const TC_SECTION_GENERAL = 'general';
+
   /**
    * @return mixed
    */
   public function getSettings() {
     $sql = $this->tcQueryBuilder->select()
       ->from('tc_setting')
+      ->where('section', self::TC_SECTION_GENERAL)
       ->orderBy('id', 'ASC')
       ->sql();
-    return $this->tcDB->tcQuery($sql);
+    return $this->tcDB->tcQuery($sql, $this->tcQueryBuilder->values);
   }
 
   /**
@@ -50,5 +53,14 @@ class TCSettingRepository extends TCModel {
         $this->tcDB->tcQuery($sql, $this->tcQueryBuilder->values);
       }
     }
+  }
+
+  public function updateActiveTheme($theme) {
+    $sql = $this->tcQueryBuilder
+      ->update('tc_setting')
+      ->set(['value' => $theme])
+      ->where('key_field', 'active_theme')
+      ->sql();
+    $this->tcDB->tcExecute($sql, $this->tcQueryBuilder->values);
   }
 }

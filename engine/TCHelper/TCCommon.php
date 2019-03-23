@@ -39,4 +39,29 @@ class TCCommon {
     }
     return $tcPathUrl;
   }
+
+  /**
+   * @param $string
+   * @param $find
+   *
+   * @return bool
+   */
+  static function searchMatchString($string, $find) {
+    if (strripos($string, $find) !== FALSE) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * @param $key
+   *
+   * @return bool
+   */
+  static function isLinkActive($key) {
+    if (self::searchMatchString($_SERVER['REQUEST_URI'], $key)) {
+      return TRUE;
+    }
+    return FALSE;
+  }
 }

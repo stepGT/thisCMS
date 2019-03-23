@@ -36,6 +36,17 @@ class TCSettingController extends TCAdminController {
     $this->tcView->tcRender('TCSetting/menus', $this->data);
   }
 
+
+  /**
+   *
+   */
+  function TCSettingControllerThemes() {
+    $this->data['themes']      = TCFunctionGetThemes();
+    $this->data['activeTheme'] = \TCSetting::TCSettingGet('active_theme');
+    //
+    $this->tcView->tcRender('TCSetting/themes', $this->data);
+  }
+
   /**
    *
    */
@@ -111,5 +122,14 @@ class TCSettingController extends TCAdminController {
     $params = $this->tcRequest->tcPost;
     $update = $this->tcModel->TCSetting->update($params);
     return $update;
+  }
+
+  /**
+   *
+   */
+  public function TCSettingControllerActivateTheme() {
+    $params = $this->tcRequest->tcPost;
+    $this->tcLoad->tcModel('TCSetting');
+    $this->tcModel->TCSetting->updateActiveTheme($params['theme']);
   }
 }

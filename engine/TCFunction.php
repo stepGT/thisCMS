@@ -58,3 +58,35 @@ function TCFunctionLanguages() {
   }
   return $languages;
 }
+
+/**
+ * @return array
+ */
+function TCFunctionGetThemes() {
+  $themesPath = '../content/themes';
+  $list       = scandir($themesPath);
+  $baseUrl    = \Engine\TCCore\TCConfig\TCConfig::item('baseUrl');
+  $themes     = [];
+  //
+  if (!empty($list)) {
+    unset($list[0]);
+    unset($list[1]);
+    //
+    foreach ($list as $dir) {
+      $pathThemegDir = $themesPath . DIRECTORY_SEPARATOR . $dir;
+      $pathConfig    = $pathThemegDir . '/theme.json';
+      $pathScreen    = $baseUrl . '/content/themes/' . $dir . '/screen.jpg';
+      //
+      if (is_dir($pathThemegDir) AND is_file($pathConfig)) {
+        $config = file_get_contents($pathConfig);
+        $info   = json_decode($config);
+        //
+        $info->screen = $pathScreen;
+        $info->dirTheme = $dir;
+        //
+        $themes[] = $info;
+      }
+    }
+  }
+  return $themes;
+}
