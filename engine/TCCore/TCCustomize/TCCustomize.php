@@ -63,4 +63,11 @@ class TCCustomize {
   public function getAdminMenuItems() {
     return $this->getConfig()->get('dashboardMenu');
   }
+
+  /**
+   * @return mixed|null
+   */
+  public function getAdminSettingItems() {
+    return $this->getConfig()->get('settingMenu');
+  }
 }
