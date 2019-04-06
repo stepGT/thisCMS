@@ -12,7 +12,8 @@
       "Engine\\": "engine",
       "Engine\\TCDI\\": "engine/TCDI",
       "Admin\\": "admin",
-      "App\\": "app"
+      "App\\": "app",
+      "Plugin\\": "content/plugins"
     }
   }
 }
