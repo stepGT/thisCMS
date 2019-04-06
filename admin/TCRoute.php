@@ -38,3 +38,6 @@ $this->tcRouter->tcAdd('settings-update-theme', '/admin/setting/activateTheme/',
 
 // Plugins Routes (GET)
 $this->tcRouter->tcAdd('list-plugins', '/admin/plugins/', 'TCPluginController:TCPluginControllerListPlugins');
+// Plugins Routes (POST)
+$this->tcRouter->tcAdd('install-plugin', '/admin/plugins/ajaxInstall/', 'TCPluginController:TCPluginControllerAjaxInstall', 'POST');
+$this->tcRouter->tcAdd('activate-plugin', '/admin/plugins/ajaxActivate/', 'TCPluginController:TCPluginControllerAjaxActivate', 'POST');
