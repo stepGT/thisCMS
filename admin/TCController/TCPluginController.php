@@ -26,12 +26,10 @@ class TCPluginController extends TCAdminController {
    *
    */
   public function TCPluginControllerAjaxInstall() {
-    $directory = $this
-      ->getRequest()
-      ->post('directory');
-
+    $directory = $this->TCControllerGetRequest()->TCRequestPost('directory');
+    //
     if ($directory !== NULL) {
-      $this->getPlugin()->install($directory);
+      $this->TCControllerGetPlugin()->TCPluginInstall($directory);
     }
   }
 
@@ -39,16 +37,10 @@ class TCPluginController extends TCAdminController {
    *
    */
   public function TCPluginControllerAjaxActivate() {
-    $pluginId = $this
-      ->getRequest()
-      ->post('id');
-
-    $active = $this
-      ->getRequest()
-      ->post('active');
-
+    $pluginId = $this->TCControllerGetRequest()->TCRequestPost('id');
+    $active = $this->TCControllerGetRequest()->TCRequestPost('active');
     if ($pluginId !== NULL) {
-      $this->getPlugin()->activate($pluginId, $active);
+      $this->TCControllerGetPlugin()->TCPluginActivate($pluginId, $active);
     }
   }
 }
