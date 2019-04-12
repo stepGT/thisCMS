@@ -7,4 +7,4 @@
  */
 define('TC_DIR', __DIR__);
 define('ENV', 'Admin');
-require_once '../engine/TCBootstrap.php';
+require_once '../engine/bootstrap.php';
