@@ -90,3 +90,48 @@ function TCFunctionGetThemes() {
   }
   return $themes;
 }
+
+/**
+ * @param string $section
+ *
+ * @return string
+ */
+function TCFunctionPathContent($section = '') {
+  $pathMask = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . '%s';
+  // Return path to correct section.
+  switch (strtolower($section)) {
+    case 'themes':
+      return sprintf($pathMask, 'themes');
+    case 'plugins':
+      return sprintf($pathMask, 'plugins');
+    case 'uploads':
+      return sprintf($pathMask, 'uploads');
+    default:
+      return $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'content';
+  }
+}
+
+/**
+ * @return array
+ */
+function TCFunctionGetPlugins() {
+  global $tcDi;
+  $pluginsPath = TCFunctionPathContent('plugins');
+  $list = scandir($pluginsPath);
+  $plugins = [];
+  //
+  if (!empty($list)) {
+    unset($list[0]);
+    unset($list[1]);
+    //
+    foreach ($list as $namePlugin) {
+      $namespace = '\\Plugin\\' . $namePlugin . '\\Plugin';
+      //
+      if (class_exists($namespace)) {
+        $plugin = new $namespace($tcDi);
+        $plugins[$namePlugin] = $plugin->details();
+      }
+    }
+  }
+  return $plugins;
+}
