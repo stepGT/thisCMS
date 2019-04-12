@@ -37,7 +37,7 @@ class TCApp {
    */
   public function tcRun() {
     try {
-      require_once __DIR__ . '/../' . mb_strtolower(ENV) . '/TCRoute.php';
+      require_once __DIR__ . '/../' . mb_strtolower(ENV) . '/route.php';
       $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
       // 404
       if ($tcRouterDispatch == NULL) {
