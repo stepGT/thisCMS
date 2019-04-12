@@ -1,13 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: stepGT
- * Date: 10/14/2018
- * Time: 10:50 PM
- */
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/TCFunction.php';
+//
+if (version_compare($ver = PHP_VERSION, $req = THISCMS_PHP_MIN, '<')) {
+  die(sprintf('You are running PHP %s, but Flexi needs at least PHP %s to run.', $ver, $req));
+}
 
 class_alias('Engine\\TCCore\\TCTemplate\\TCAsset', 'TCAsset');
 class_alias('Engine\\TCCore\\TCTemplate\\TCTheme', 'TCTheme');
