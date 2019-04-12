@@ -10,9 +10,13 @@
   "autoload": {
     "psr-4": {
       "Engine\\": "engine",
-      "Engine\\TCDI\\": "engine/TCDI",
+      "App\\": "app",
       "Admin\\": "admin",
-      "App\\": "app"
-    }
+      "Content\\": "content"
+    },
+    "files": [
+      "engine/defines.php",
+      "engine/function.php"
+    ]
   }
 }
