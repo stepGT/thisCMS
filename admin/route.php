@@ -35,3 +35,9 @@ $this->tcRouter->tcAdd('settings-sort-menu-item', '/admin/setting/ajaxMenuSortIt
 $this->tcRouter->tcAdd('settings-remove-menu-item', '/admin/setting/ajaxMenuRemoveItem/', 'TCSettingController:ajaxMenuRemoveItem', 'POST');
 $this->tcRouter->tcAdd('settings-update-menu-item', '/admin/setting/ajaxMenuUpdateItem/', 'TCSettingController:ajaxMenuUpdateItem', 'POST');
 $this->tcRouter->tcAdd('settings-update-theme', '/admin/setting/activateTheme/', 'TCSettingController:TCSettingControllerActivateTheme', 'POST');
+
+// Plugins Routes (GET)
+$this->tcRouter->tcAdd('list-plugins', '/admin/plugins/', 'TCPluginController:TCPluginControllerListPlugins');
+// Plugins Routes (POST)
+$this->tcRouter->tcAdd('install-plugin', '/admin/plugins/ajaxInstall/', 'TCPluginController:TCPluginControllerAjaxInstall', 'POST');
+$this->tcRouter->tcAdd('activate-plugin', '/admin/plugins/ajaxActivate/', 'TCPluginController:TCPluginControllerAjaxActivate', 'POST');

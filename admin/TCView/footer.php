@@ -13,6 +13,7 @@
 <script src="/admin/TCAssets/js/post.js"></script>
 <script src="/admin/TCAssets/js/setting.js"></script>
 <script src="/admin/TCAssets/js/menu.js"></script>
+<script src="/admin/TCAssets/js/plugin.js"></script>
 <?php TCAsset::render('js'); ?>
 </body>
 </html>

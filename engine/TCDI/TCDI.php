@@ -37,7 +37,7 @@ class TCDI {
    * @return mixed
    */
   public function tcGet($tcKey) {
-    return $this->tcHas($tcKey);
+    return $this->tcHas($tcKey) ? $this->tcContainer[$tcKey] : NULL;
   }
 
   /**
@@ -46,14 +46,14 @@ class TCDI {
    * @return bool
    */
   public function tcHas($tcKey) {
-    return isset($this->tcContainer[$tcKey]) ? $this->tcContainer[$tcKey] : NULL;
+    return isset($this->tcContainer[$tcKey]);
   }
 
   /**
    * @param $key
    * @param $value
    */
-  public function TCDIPush($key, $element = []) {
+  /*public function TCDIPush($key, $element = []) {
     //
     if ($this->tcHas($key) !== NULL) {
       $this->tcSet($key, []);
@@ -61,5 +61,5 @@ class TCDI {
     if (!empty($element)) {
       $this->tcContainer[$key][$element['key']] = $element['value'];
     }
-  }
+  }*/
 }

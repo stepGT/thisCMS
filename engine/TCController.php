@@ -15,7 +15,7 @@ abstract class TCController {
 
   protected $tcDi;
 
-  protected $tcDb;
+  protected $tcDB;
 
   protected $tcView;
 
@@ -24,6 +24,11 @@ abstract class TCController {
   protected $tcRequest;
 
   protected $tcLoad;
+
+  /**
+   * @var \Engine\TCCore\TCPlugin\TCPlugin
+   */
+  protected $tcPlugin;
 
   /**
    * TCController constructor.
@@ -62,5 +67,19 @@ abstract class TCController {
       }
     }
     return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function GetTcRequest() {
+    return $this->tcRequest;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function GetTcPlugin() {
+    return $this->tcPlugin;
   }
 }

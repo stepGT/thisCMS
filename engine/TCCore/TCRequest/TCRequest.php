@@ -52,4 +52,22 @@ class TCRequest {
     $this->tcFiles   = $_FILES;
     $this->tcServer  = $_SERVER;
   }
+
+  /**
+   * @param bool $key
+   *
+   * @return array|mixed
+   */
+  public function TCRequestGet($key = FALSE) {
+    return $key ? $this->tcGet[$key] : $this->tcGet;
+  }
+
+  /**
+   * @param bool $key
+   *
+   * @return array|mixed
+   */
+  public function TCRequestPost($key = FALSE) {
+    return $key ? $this->tcPost[$key] : $this->tcPost;
+  }
 }
