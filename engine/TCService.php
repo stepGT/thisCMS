@@ -39,9 +39,9 @@ abstract class TCService {
    */
   public function __construct(TCDI $di) {
     $this->di = $di;
-    $this->db = $this->di->tcGet('db');
-    $this->load = $this->di->tcGet('load');
-    $this->model = $this->di->tcGet('model');
+    $this->db = $this->di->tcGet('tcDB');
+    $this->load = $this->di->tcGet('tcLoad');
+    $this->model = $this->di->tcGet('tcModel');
   }
 
   /**
@@ -71,8 +71,8 @@ abstract class TCService {
    * @return object
    */
   public function getModel($name) {
-    $this->load->model(ucfirst($name), FALSE, 'Admin');
-    $model = $this->getDI()->tcGet('model');
-    return $model->{lcfirst($name)};
+    $this->load->tcModel($name, FALSE, 'Admin');
+    $model = $this->getDI()->tcGet('tcModel');
+    return $model->{$name};
   }
 }

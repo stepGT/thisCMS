@@ -24,6 +24,8 @@ try {
     $provider = new $service($tcDi);
     $provider->tcInit();
   }
+  // Init models
+  $tcDi->tcSet('tcModel', []);
   $app = new TCApp($tcDi);
   $app->tcRun();
 } catch (\ErrorException $e) {
