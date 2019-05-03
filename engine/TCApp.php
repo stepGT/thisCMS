@@ -38,6 +38,20 @@ class TCApp {
   public function tcRun() {
     try {
       require_once __DIR__ . '/../' . mb_strtolower(ENV) . '/route.php';
+      /** @var \Engine\TCCore\TCPlugin\TCPlugin $pluginService */
+      $pluginService = $this->tcDi->tcGet('tcPlugin');
+      $plugins = $pluginService->TCPluginGetActivePlugins();
+
+      /** @var \Admin\TCModel\TCPlugin\TCPlugin $plugin */
+      foreach ($plugins as $plugin) {
+        $pluginClass = '\\Plugin\\' . $plugin->directory . '\\Plugin';
+        $pluginObject = new $pluginClass($this->tcDi);
+
+        if (method_exists($pluginClass, 'init')) {
+          $pluginObject->init();
+        }
+      }
+
       $tcRouterDispatch = $this->tcRouter->tcDispatch(TCCommon::tcGetMethod(), TCCommon::tcGetPathUrl());
       // 404
       if ($tcRouterDispatch == NULL) {
