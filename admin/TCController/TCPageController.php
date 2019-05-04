@@ -32,7 +32,8 @@ class TCPageController extends TCAdminController {
    */
   public function edit($id) {
     $this->tcLoad->tcModel('TCPage');
-    $this->data['page'] = $this->tcModel->TCPage->getPageData($id);
+    $this->data['baseUrl'] = \Engine\TCCore\TCConfig\TCConfig::item('baseUrl');
+    $this->data['page']    = $this->tcModel->TCPage->getPageData($id);
     $this->tcView->tcRender('TCPages/edit', $this->data);
   }
 
