@@ -34,12 +34,29 @@ class TCPageRepository extends TCModel {
   }
 
   /**
+   * @param string $segment
+   *
+   * @return object|bool
+   */
+  public function getPageBySegment($segment) {
+    $sql = $this->tcQueryBuilder
+      ->select()
+      ->from('tc_page')
+      ->where('segment', $segment)
+      ->limit(1)
+      ->sql();
+    $result = $this->tcDB->tcQuery($sql, $this->tcQueryBuilder->values);
+    return isset($result[0]) ? $result[0] : FALSE;
+  }
+
+  /**
    * @param $params
    */
   public function createPage($params) {
     $page = new TCPage();
     $page->setTitle($params['title']);
     $page->setContent($params['content']);
+    $page->setSegment(\Engine\TCHelper\TCText::transliteration($params['title']));
     $pageId = $page->save();
     return $pageId;
   }
@@ -55,6 +72,8 @@ class TCPageRepository extends TCModel {
       $page = new TCPage($params['page_id']);
       $page->setTitle($params['title']);
       $page->setContent($params['content']);
+      $page->setStatus($params['status']);
+      $page->setType($params['type']);
       $page->save();
     }
   }
